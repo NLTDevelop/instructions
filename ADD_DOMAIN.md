@@ -6,6 +6,8 @@
 4) Confirm your purchase
 5) Change domain config to 'DNS' and add your elastic IP
 
+<img src="https://github.com/NLTDevelop/instructions/blob/main/assets/nicuadomain.png"/>
+
 ## Add elastic IP ##
 
 1) Go to [AWS EC2](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#Home:)
