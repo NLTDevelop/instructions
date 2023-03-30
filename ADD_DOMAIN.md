@@ -6,7 +6,7 @@
 4) Confirm your purchase
 5) Change domain config to 'DNS' and add your elastic IP
 
-<img src="https://github.com/NLTDevelop/instructions/blob/main/assets/nicuadomain.png"/>
+<img src="https://github.com/NLTDevelop/instructions/blob/main/assets/nicuadomain.png" style="width:400px;" />
 
 ## Add elastic IP ##
 
