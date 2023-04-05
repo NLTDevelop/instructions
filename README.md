@@ -7,4 +7,4 @@
 3) [Pull changes Nodejs project and update container](https://github.com/NLTDevelop/instructions/blob/main/PULL_CHANGES_NESTJS.md)
 
 ### Mobile
-1) [Mobile app versioning](https://github.com/NLTDevelop/instructions/blob/main/MOBILE_APP_VERSIONING)
+1) [Mobile app versioning](https://github.com/NLTDevelop/instructions/blob/main/MOBILE_APP_VERSIONING.md)
