@@ -12,44 +12,79 @@ sudo apt install git
 ```
 git version
 ```
-Create app for our project
+4) Create app for our project
+```
 mkdir apps
-Go to folder apps
+```
+5) Go to folder apps
+```
 cd apps
-Add SSH key for Github access
-Generate  SSH key
+```
 
+## Clone project from Github ##
+
+1) Generate  SSH key 
+```
 ssh-keygen -t ed25519 -C "your_email@example.com"
-Start the ssh-agent in the background.
+```
+2) Start the ssh-agent in the background.
+```
 eval "$(ssh-agent -s)"
-Create .ssh/config
+```
+3) Create .ssh/config
+```
 touch ~/.ssh/config
 ssh-add ~/.ssh/id_ed25519
-Show public SSH key
+```
+4) Show public SSH key
+```
 cat ~/.ssh/id_ed25519.pub
-Add  public SSH key to your Github settings -> SSH and GPG keys
-video instruction - https://www.youtube.com/watch?v=YqrKu9QZvsc
-Git instruction - https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
-Установка Docker
-Install packages to allow apt to use a repository over HTTPS
+```
+5) Add  public SSH key to your Github settings -> SSH and GPG keys
+[Video instruction](https://www.youtube.com/watch?v=YqrKu9QZvsc)
+[Git instruction](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+6) Clone project from Github
+```
+git clone <link SSh>
+```
+
+
+## Install Docker ##
+
+1) Install packages to allow apt to use a repository over HTTPS
+```
 sudo apt-get install \
     ca-certificates \
     curl \
     gnupg \
     lsb-release
-Add Docker’s official GPG key
+```
+2) Add Docker’s official GPG key
+```
 sudo mkdir -m 0755 -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-Use the following command to set up the repository:
+```
+3) Use the following command to set up the repository:
+```
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-Update the apt package index:
+```
+4) Update the apt package index:
+```
 sudo apt-get update
-Install Docker Engine, containerd, and Docker Compose.
+```
+5) Install the latest version of Docker Engine and containerd
+```
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-Confirm Successful Installation
+``` 
+6) Confirm Successful Installation
+```
 docker -v
+```
+
+
+
 Запуск проекта
 Переходим в склонированный репозиторий
 sudo docker compose up -d
