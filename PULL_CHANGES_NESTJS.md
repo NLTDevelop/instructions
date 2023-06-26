@@ -22,7 +22,7 @@ sudo docker compose down
 ```
 6) Run the container with your changes using the following command:
 ```
-sudo docker compose up -d
+sudo docker compose up -d --build
 ```
 7) Show containers list
 ```
