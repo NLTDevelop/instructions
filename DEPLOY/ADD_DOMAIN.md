@@ -6,7 +6,7 @@
 4) Confirm your purchase
 5) Change domain config to 'DNS' and add your elastic IP
 
-![nic.ua_domain](./assets/nicuadomain.png)
+![nic.ua_domain](../assets/nicuadomain.png)
 
 ## Add elastic IP ##
 
