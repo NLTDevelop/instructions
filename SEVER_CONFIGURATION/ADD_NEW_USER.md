@@ -5,7 +5,7 @@ Create user
 sudo adduser new_user
 ```
 
-Create password
+Create password for user
 ```bash
-sudo passwd new_password
+sudo passwd name_user
 ```
