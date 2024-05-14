@@ -5,7 +5,7 @@ Create group
 sudo groupadd name_group
 ```
 
-Adding users to groups
+//Adding users to groups
 ```bash
 sudo usermod -aG webusers user_name
 
