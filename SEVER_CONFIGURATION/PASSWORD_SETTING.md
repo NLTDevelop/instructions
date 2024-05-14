@@ -9,7 +9,7 @@ sudo apt install openssh-server
 sudo nano /etc/ssh/sshd_config
 ```
 For single user:
-Match User your_username
+\\Match User your_username
 PasswordAuthentication yes
 
 For all users:
