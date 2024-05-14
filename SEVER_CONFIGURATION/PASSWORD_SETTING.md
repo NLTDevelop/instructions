@@ -8,12 +8,16 @@ sudo apt install openssh-server
 ```bash
 sudo nano /etc/ssh/sshd_config
 ```
-For single user: /n \n
+For single user:
+```bash
 Match User your_username
 PasswordAuthentication yes
+```
 
 For all users:
+```bash
 PasswordAuthentication yes
+```
 
 ```bash
 sudo systemctl restart ssh
