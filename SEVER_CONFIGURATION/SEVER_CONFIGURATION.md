@@ -43,6 +43,25 @@ sudo apt install openssh-server
 ```
 
 # Setting sshd_config
+## SSH KEY login
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+For single user:
+```bash
+Match User your_username
+PasswordAuthentication no
+```
+
+For all users:
+```bash
+PasswordAuthentication no
+```
+
+[Add key in user](https://github.com/NLTDevelop/instructions/blob/main/DEPLOY/ADD_PUBLIC_KEY_TO_AWS_EC2.md)
+
+## Password login
 ```bash
 sudo nano /etc/ssh/sshd_config
 ```
@@ -62,7 +81,7 @@ Restart ssh
 sudo systemctl restart ssh
 ```
 
-## Setting up a server connection for the user
+# Setting up a server connection for the user
 
 Install sshpass
 ```bash
@@ -73,3 +92,5 @@ Server login
 ```bash
 sshpass -p 'your_password' ssh your_user@00.000.00.000
 ```
+# Example
+
