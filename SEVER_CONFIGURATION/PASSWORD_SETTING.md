@@ -19,6 +19,7 @@ For all users:
 PasswordAuthentication yes
 ```
 
+Restart ssh
 ```bash
 sudo systemctl restart ssh
 ```
