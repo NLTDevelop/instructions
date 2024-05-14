@@ -92,5 +92,4 @@ Server login
 ```bash
 sshpass -p 'your_password' ssh your_user@00.000.00.000
 ```
-# Example
 
