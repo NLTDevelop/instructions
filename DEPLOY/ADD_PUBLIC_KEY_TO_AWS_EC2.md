@@ -59,3 +59,7 @@ cat ~/my_key
 
 Instruction how to get AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 https://wanago.io/2023/02/13/nestjs-api-ci-cd-aws-ecs-github-actions/
+
+
+Lates instruction CI/CD
+https://www.youtube.com/watch?v=YBjrZZMXNe8
