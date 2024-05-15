@@ -11,7 +11,6 @@ sudo usermod -aG name_group user_name
 
 You should definitely add this:
 sudo usermod -aG name_group www-data
-
 ```
 
 Customize a folder for a group
@@ -93,3 +92,22 @@ Server login
 sshpass -p 'your_password' ssh your_user@00.000.00.000
 ```
 
+# Example
+```bash
+1. sudo adduser frontend
+2. sudo passwd frontend
+3. su frontend
+4. sudo mkdir -p /home/frontend/.ssh
+5. sudo touch /home/frontend/.ssh/authorized_keys
+6. sudo nano /home/frontend/.ssh/authorized_keys
+7. chmod 600 authorized_keys
+8. sudo service ssh restart
+9. exit
+
+10. sudo groupadd webusers
+11. sudo usermod -aG webusers frontend
+12. sudo usermod -aG webusers ubuntu
+13. sudo usermod -aG webusers www-data
+14. sudo chown -R :webusers var/www/build
+15. sudo chmod -R 770 var/www/build
+```
