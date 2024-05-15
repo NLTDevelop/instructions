@@ -9,4 +9,11 @@
 6) [Create auth aws ec2 key](https://github.com/NLTDevelop/instructions/blob/main/CREATE_AUTH_AWS_KEY.md)
 
 ### Mobile
-1) [Mobile app versioning](https://github.com/NLTDevelop/instructions/blob/main/MOBILE_APP_VERSIONING.md)
+
+1. [Mobile app versioning](https://github.com/NLTDevelop/instructions/blob/main/MOBILE_APP_VERSIONING.md)
+2. [Google Play Store](./GOOGLE_PLAY.md)
+3. [App Store Connect](./APP_STORE.md)
+
+### API's
+
+1. [Google Maps API](./GOOGLE_MAPS_API.md)
