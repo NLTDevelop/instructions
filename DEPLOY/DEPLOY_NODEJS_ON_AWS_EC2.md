@@ -48,6 +48,102 @@ cat ~/.ssh/id_ed25519.pub
 git clone <link SSh>
 ```
 
+## Update nodejs ##
+
+1) Clear npm cache
+```
+sudo npm cache clean -f
+```
+
+2) Install n package
+```
+sudo npm install -g n
+```
+
+3) Install latest stable version of nodejs
+```
+sudo n stable
+```
+
+4) Close terminal and open again
+```
+node -v
+```
+
+## Install postgres ##
+
+1) Update the apt package index
+```
+sudo apt-get update
+```
+
+2) Install the postgres package
+```
+sudo apt-get install postgresql postgresql-contrib
+```
+
+3) Confirm Successful Installation
+```
+psql --version
+```
+
+4) Start the postgres service
+```
+sudo service postgresql start
+```
+
+5) Access the postgres shell
+```
+sudo -u postgres psql
+```
+
+6) Create a new user
+```
+CREATE USER dmitriy WITH PASSWORD 'dmitriy1234';
+```
+
+7) Create a new database
+```
+CREATE DATABASE dmitriy;
+```
+
+8) Grant privileges to the user
+```
+GRANT ALL PRIVILEGES ON DATABASE dmitriy TO dmitriy;
+```
+
+9) Exit the postgres shell
+```
+\q
+```
+ 
+## Install PM2 ##
+
+1) Install PM2
+```
+sudo npm install pm2 -g
+```
+
+2) Start the app
+```
+pm2 start dist/main.js --name my-project-name
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Install Docker ##
 

@@ -37,3 +37,10 @@ sudo docker ps
   - **Source : 0.0.0.0/0**
 
 # [Article](https://dev.to/amedd/dockerize-a-postgresql-database-in-an-aws-ec2-instance-5dej) #
+
+5) Remove the container
+```
+sudo docker stop postgresql
+sudo docker rm postgresql
+```
+sudo docker run --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=dmitriy180507 -p 5432:5432 -v /data:/var/lib/postgresql/data -d postgres:alpine
