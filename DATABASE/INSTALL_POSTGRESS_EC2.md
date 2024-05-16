@@ -1,27 +1,61 @@
-# Install PostgresSQL  on EC2
+## Install PostgresSQL on EC2
+```bash
+1. sudo apt update
+2. sudo apt-get -y install postgresql
+```
 
-https://dev.to/amedd/dockerize-a-postgresql-database-in-an-aws-ec2-instance-5dej
+## Update user
+```bash
+1. sudo su postgres
+2. psql
+3. ALTER USER postgres password 'your_password';
+4. \q
+5. exit
+```
 
-# Updating the apt package index
-sudo apt-get update
+## Create User
+```bash
+1. sudo su postgres
+2. psql
+3. CREATE USER username password 'your_password';
+4. \q
+5. exit
+```
 
-# Installing the packages to allow apt to download the repository over https
-sudo apt-get install ca-certificates curl gnupg lsb-release
+## Give roles and privileges to the user
+```bash
+1. sudo su postgres
+2. psql
+3. ALTER ROLE username SUPERUSER CREATEROLE CREATEDB REPLICATION BYPASSRLS;
+4. GRANT ALL PRIVILEGES ON DATABASE db_name TO your_user;
+5. \q
+6. exit
+```
 
-# Add Docker’s official GPG key
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+## Access settings
+```bash
+1. cd /etc/postgresql/10/main/
+2. nano pg_hba.conf
 
-#Setting up the repository
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+**Paste(for all)**
+host       all        all              0.0.0.0/0          md5
 
-# Updating the apt package index
-sudo apt-get update
-
-#Installing the latest version of the docker-cli, compose, etc
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+**Paste(for specific IP)**
+host       all        all              193.176.251.151/32          md5
+host       all        all              .../32          md5
 
 
-sudo docker run --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=post123 -p 5432:5432 -v /data:/var/lib/postgresql/data -d postgres:alpine
+
+3. nano postgresql.conf
+
+**Paste(for all)**
+listen_addresses='*'
+
+**Paste(for specific IP)**
+listen_addresses='localhost,193.176.251.151,...'
+```
+
+## Restart postgres
+```bash
+sudo service postgresql restart
+```
