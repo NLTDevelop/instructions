@@ -36,15 +36,21 @@
 ```bash
 1. cd /etc/postgresql/10/main/
 2. nano pg_hba.conf
+
 **Paste(for all)**
 host       all        all              0.0.0.0/0          md5
+
 **Paste(for specific IP)**
 host       all        all              193.176.251.151/32          md5
 host       all        all              .../32          md5
 
+
+
 3. nano postgresql.conf
+
 **Paste(for all)**
 listen_addresses='*'
+
 **Paste(for specific IP)**
 listen_addresses='localhost,193.176.251.151,...'
 
