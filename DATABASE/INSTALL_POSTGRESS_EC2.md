@@ -53,8 +53,6 @@ listen_addresses='*'
 
 **Paste(for specific IP)**
 listen_addresses='localhost,193.176.251.151,...'
-
-4. sudo service postgresql restart
 ```
 
 ## Restart postgres
