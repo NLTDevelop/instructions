@@ -1,3 +1,69 @@
+Настройка скрипта для очистки логов PM2
+Создайте скрипт для очистки логов PM2
+
+Создайте новый файл с именем clean_pm2_logs.sh в домашней директории пользователя. Вот пример содержимого скрипта:
+
+bash
+Copy code
+#!/bin/bash
+
+# Лог файл
+LOGFILE=~/clean_pm2_logs.log
+
+# Очистка логов PM2
+echo "[$(date)] Starting PM2 log flush" >> $LOGFILE
+pm2 flush >> $LOGFILE 2>&1
+echo "[$(date)] Finished PM2 log flush" >> $LOGFILE
+Сделайте скрипт исполняемым
+
+Дайте скрипту права на выполнение с помощью команды chmod:
+
+sh
+Copy code
+chmod +x ~/clean_pm2_logs.sh
+Добавьте cron задание
+
+Откройте редактор cron с помощью команды:
+
+sh
+Copy code
+crontab -e
+Добавьте следующую строку в файл cron, чтобы запускать скрипт ежедневно в полночь:
+
+cron
+Copy code
+0 0 * * * ~/clean_pm2_logs.sh
+Сохраните изменения и закройте редактор.
+
+Проверьте выполнение cron задания
+
+После настройки cron задания, убедитесь, что оно запускается правильно. Вы можете проверить записи в системном журнале cron с помощью команды:
+
+sh
+Copy code
+grep CRON /var/log/syslog
+Вы должны увидеть записи о выполнении вашего cron задания.
+
+Проверьте содержимое лог файла
+
+После запуска скрипта, убедитесь, что лог файл содержит информацию о выполнении:
+
+sh
+Copy code
+cat ~/clean_pm2_logs.log
+Если скрипт успешно выполнился, вы увидите записи о начале и завершении очистки логов PM2.
+
+Проверьте логи PM2
+
+После выполнения скрипта, убедитесь, что логи PM2 были успешно очищены. Вы можете проверить их с помощью команды:
+
+sh
+Copy code
+pm2 logs
+Если логи PM2 были успешно очищены, вы не должны увидеть старых записей в логах.
+
+
+
 ## Create key pair
 
 Create key pair
@@ -14,12 +80,12 @@ cat ~/my_key.pub
 
 1. Go to EC2
 2. Once you are connected to your EC2 instance, navigate to the ~/.ssh directory:
-   
+
     ```bash
     cd ~/.ssh
     ```
 3. If the authorized_keys file does not exist, create it:
-   
+
     ```bash
     touch authorized_keys
     ```
@@ -47,7 +113,7 @@ cat ~/my_key.pub
 1. Go to github
 2. Go to settings
 3. Go to Secrets and Variables
-4. Open Actions 
+4. Open Actions
 5. Press New repository secret
 6. Add your private key
 
