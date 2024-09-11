@@ -2,12 +2,12 @@
 
 ## Server setup
 
-##### 1. Go to the server and create a “metrics” folder, then navigate to it..
+##### 1. Go to the server and create a “monitoring” folder, then navigate to it..
 ```
-mkdir metrics
+mkdir monitoring
 ```
 ```
-cd metrics
+cd monitoring
 ```
 
 //TODO: Подпавить ссылку на гит
@@ -19,7 +19,7 @@ git clone ...
 
 ##### 3. Update dependencies and install Docker.
 ```
-apt update && apt install docker.io
+sudo apt update && sudo apt install docker.io
 ```
 
 
@@ -31,13 +31,13 @@ sudo docker swarm init
 
 ##### 5. Deploy the service stack in Docker Swarm using the Docker Compose file.
 ```
-sudo docker stack deploy -c grafana-docker-stack/docker-compose.yml monitoring
+sudo docker stack deploy -c ~/monitoring/nltdev-grafana/docker-compose.yml monitoring
 ```
 
 
 ##### 6. Configure Nginx so that we can access Grafana.
 ```
-sudo nano /etc/nginx/sites-available/metrics-config
+sudo nano /etc/nginx/sites-available/monitoring-config
 ```
 
 ###### Insert this code:
@@ -57,7 +57,7 @@ server {
 }
 ```
 ```
-sudo ln -s /etc/nginx/sites-available/metrics-config /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/monitoring-config /etc/nginx/sites-enabled/
 ```
 ```
 sudo nginx -t
