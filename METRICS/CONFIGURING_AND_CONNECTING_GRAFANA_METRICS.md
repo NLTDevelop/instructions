@@ -89,13 +89,13 @@ admin
 ##### 2. Connect Prometheus to Grafana.
 
 ###### Click on “Configuration” (hex), then on “Data sources” and then on “Add data source”. In the list select “Prometheus”:
-![](../assets/grafana screen 1.png)
+![](../assets/grafana_screen_1.png)
 
 ###### In the “URL” field, enter the following address:
 ```
 http://prometheus:9090
 ```
-![](../assets/grafana screen 2.png)
+![](../assets/grafana_screen_2.png)
 
 ###### Click on the “Save & test” button.
 
@@ -105,13 +105,13 @@ http://prometheus:9090
 ###### Go to the link, download the JSON and copy the content. [Node Exporter Full](https://grafana.com/grafana/dashboards/1860-node-exporter-full/)
 
 ###### In the Grafana app, click on “Dashboards” (4 crudates), then on “Browse” and then on “Import”:
-![](../assets/grafana screen 3.png)
+![](../assets/grafana_screen_3.png)
 
 ###### In the “Import via panel json” field, paste the previously copied JSON and click “Load”:
-![](../assets/grafana screen 4.png)
+![](../assets/grafana_screen_4.png)
 
 ###### In the “Prometheus” field, select “Prometheus (default)” and click “import”.
-![](../assets/grafana screen 5.png)
+![](../assets/grafana_screen_5.png)
 
 
 ##### 4. Configure the Node Exporter on the server.
