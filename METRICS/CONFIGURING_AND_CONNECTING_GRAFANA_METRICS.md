@@ -10,8 +10,7 @@ mkdir monitoring
 cd monitoring
 ```
 
-//TODO: Подпавить ссылку на гит
-##### 2. Download setup Grafana from [github ](https://dashboard.stripe.com/test/dashboard).
+##### 2. Download setup Grafana from [github](https://github.com/NLTDevelop/nltdev-grafana).
 ```
 git clone ...
 ```
@@ -41,19 +40,20 @@ sudo nano /etc/nginx/sites-available/monitoring-config
 ```
 
 ###### Insert this code:
-//TODO: Подправить конфигурацию nginx
 ```
 server {
+
     listen 80;
+    server_name your_domain;
 
     location / {
-    //TODO: подправить порт
         proxy_pass http://localhost:13000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
+
 }
 ```
 ```
