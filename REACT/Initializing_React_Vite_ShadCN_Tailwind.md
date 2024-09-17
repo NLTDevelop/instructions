@@ -1,6 +1,6 @@
 # Вступ: #
 ***React*** - JavaScript-бібліотека для розробки інтерфейсів користувача.
-Включає такі інструменти: Webpack, Babel, Jest.
+Включає такі інструменти: Webpack, Babel, Jest.<br>
 https://create-react-app.dev/ 
 
 ***Webpack*** - це модульний пакувальник, який дозволяє об'єднувати різні модулі (наприклад, JavaScript-файли, CSS, зображення та інші ресурси) в один або декілька вихідних файлів.
@@ -21,7 +21,7 @@ https://create-react-app.dev/
 ***Shadcn/ui*** - це бібліотека інтерфейсів користувача, розроблена для використання з React.
 
 # Ініціалізація проекту: #
-Vite
+<u>Vite</u>
 
 1. Створення проекту:
 ```
@@ -33,7 +33,7 @@ npm create vite@latest
 - обрати фреймворк, що використовується (React/Next etc.)
 - обрати мову програмування (JavaScript / TypeScript) c можливість встановлення SWC (швидкий компілятор JavaScript і TypeScript, який може використовуватися як альтернатива Babel)
 
-Tailwind CSS
+<u>Tailwind CSS</u>
 1. Установка tailwind.css та його залежностей:
 ```
 npm install -D tailwindcss postcss autoprefixer
@@ -90,7 +90,7 @@ content: [ "./index.html", "./src/**/*.{js,ts,jsx,tsx}", ],
 ```
 8. Для автозаповнення стилів використовується плагін: ***Tailwind CSS IntelliSense***
 
-Shadcn/ui
+<u>Shadcn/ui</u>
 1. Підключення бібліотеки до проекту:
 ```
 npx shadcn@latest init
@@ -102,6 +102,6 @@ npx shadcn@latest init
 
 
 # Посилання: #
-https://vitejs.dev/guide/ - док по Vite
-https://ui.shadcn.com/docs/installation/vite -  док по ShadCN
+https://vitejs.dev/guide/ - док по Vite<br>
+https://ui.shadcn.com/docs/installation/vite -  док по ShadCN<br>
 https://tailwindcss.com/docs/installation -  док по Tailwind
