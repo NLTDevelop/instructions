@@ -7,7 +7,6 @@ GitLab offers 400 free minutes per month for GitLab Runner usage. To avoid unnec
 Make sure you have the following installed on your local machine:
 
 - Docker
-- GitLab Runner
 
 ## Installing GitLab Runner on macOS
 
