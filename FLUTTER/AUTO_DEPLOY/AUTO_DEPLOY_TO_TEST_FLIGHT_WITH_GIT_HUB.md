@@ -29,22 +29,15 @@
 - APPLE_KEY_ID — App Store Connect API Key ID
 - APPLE_ISSUER_ID — App Store Connect Issuer ID
 - APPLE_KEY_CONTENT — App Store Connect API Key ID значение, которое храниться в файле .p8
-- APP_STORE_CONNECT_TEAM_ID - the ID of your App Store Connect team in you’re in multiple teams
-
-
-- DEVELOPER_APP_ID - in App Store Connect, go to the app -> App Information -> Scroll down to the General Information
-  section of your app and look for Apple ID.
-- DEVELOPER_APP_IDENTIFIER - your app’s bundle identifier
-- DEVELOPER_PORTAL_TEAM_ID - the ID of your Developer Portal team if you’re in multiple teams
-- FASTLANE_APPLE_ID - the Apple ID or developer email you use to manage the app
-- MATCH_PASSWORD - the passphrase that you assigned when initializing match, will be used for decrypting the
-  certificates and profiles.
-- TEMP_KEYCHAIN_USER & TEMP_KEYCHAIN_PASSWORD - assign a temp keychain user and password for your workflow.
+- APP_STORE_CONNECT_TEAM_ID - Team ID вашего аккаунта в App Store Connect
+- TEMP_KEYCHAIN_USER & TEMP_KEYCHAIN_PASSWORD - имя и пароль временного хранилища
+- MATCH_PASSWORD - пароль для сертификатов
 
 ### Git Authorization
 
-Для того, чтобы создать ключ **GIT_AUTHORIZATION** перейдите в настройки вашего профиля на **GitHub** и в левой
-навигационной панели ищем **Developer settings**. Далее переходим в раздел **Personal access tokens** и нажимаем на
+Для того, чтобы создать ключ **GIT_AUTHORIZATION** перейдите в настройки профиля на котором будут храниться сертификаты
+на **GitHub** и в левой навигационной панели ищем **Developer settings**. Далее переходим в раздел **Personal access
+tokens** и нажимаем на
 кнопку **Generate new token**. В поле **Note** введите название вашего токена, например **GIT_AUTHORIZATION**.
 Далее в разделе **Select scopes** выберите **repo** и **workflow**. Нажмите на кнопку **Generate token**.
 ![GitHub Personal Access Token](images/git_auth_key.png)
@@ -75,6 +68,13 @@
 спуститься ниже до раздела **Membership Details**. В этом разделе будет указано **Team ID**.
 ![Membership Details](images/membership_details.jpeg)
 
+## Keychain
+
+Для того чтобы импортировать сертификаты и ключи в **macOS** нам потребуется временное хранилище. Для этого мы будем его
+создавать и удалять после выполнения задачи. Для создания временного хранилища нам необходимо создать ключ и пароль.
+Эти ключи и пароли мы будем хранить в **GitHub Secrets**.
+Ключи будут иметь названия **TEMP_KEYCHAIN_USER** и **TEMP_KEYCHAIN_PASSWORD** для имени и пароля соответственно.
+
 ## Настройка Fastlane
 
 Для начала установим **Fastlane** на наше устройство. Для этого выполним команду:
@@ -90,6 +90,109 @@ cd ios
 ```bash
 fastlane init
 ```
+
+- Далее у нас появляется выбор, что мы хотим настроить. Выбираем **Automate beta distribution to TestFlight**
+
+```bash
+What would you like to use fastlane for?
+1. 📸  Automate screenshots
+2. 👩‍✈️  Automate beta distribution to TestFlight
+3. 🚀  Automate App Store distribution
+4. 🛠  Manual setup - manually setup your project to automate your tasks
+```
+
+- Далее нам предложат ввести **Apple ID** и **App Identifier**. Вводим их и нажимаем **Enter**
+
+```bash
+Please enter your Apple ID developer credentials
+Apple ID Username:
+<YOUR_APPLE_ID_USERNAME>
+```
+
+В папке **ios** появится папка **fastlane** с файлом **Fastfile** и **Appfile**. В **Fastfile** мы будем описывать наши
+шаги для автоматической выгрузки на **TestFlight**. В **Appfile** мы будем хранить информацию о нашем приложении. Так же
+в корне проекта создается файл **Gemfile**. В нем указаны все зависимости для **Fastlane**.
+
+```ruby
+source "https://rubygems.org"
+
+gem "xcode-install"
+
+gem "cocoapods"
+
+gem "fastlane"
+
+plugpath = File.join(File.dirname(__FILE__), 'fastlane', 'Pluginfile')
+eval_gemfile(plugpath) if File.exist?(plugpath)
+```
+
+- Так же, для работы скрипта нам необходимо создать частный репозиторий сертификатов, к которому мы будем обращаться
+  через **GIT_AUTHORIZATION**. Назовем его **fastlane**. Копируем ссылку на репозиторий, так как она нам понадобится в
+  скрипте.
+
+> Рекомендация: создать приватный репозиторий, так как в нем будут храниться ваши сертификаты и ключи. Так же,
+> рекомендуется поставить ветку по умолчанию **master**, так как сертификаты будут храниться в ветке **master**.
+
+Далее запускаем команду:
+
+```bash
+fastlane match init
+```
+
+- Далее появится выбор, где мы предпочтем хранить сертификаты. Наш выбор - **git**.
+
+```bash
+fastlane match supports multiple storage modes, please select the one you want to use:
+1. git
+2. google_cloud
+3. s3
+4. gitlab_secure_files
+```
+
+- И тут нам понадобиться ссылка на приватный репозиторий сертификатов.
+
+```bash
+Please create a new, private git repository to store the certificates and profiles there
+URL of the Git Repo: 
+<URL_TO_YOUR_PRIVATE_REPOSITORY>
+```
+
+После этих действий в папке **fastlane** появится файл **Matchfile**. В нем мы будем хранить информацию о нашем
+репозитории сертификатов.
+
+```ruby
+git_url("https://github.com/<YOUR_USERNAME>/fastlane/")
+
+storage_mode("git")
+
+type("appstore") # По умолчанию используется development
+```
+
+- Следующее действие - генерация сертификатов и ввод ваших учетных данных при запросе с помощью **Fastlane Match**. От
+  вас потребуется ввести пароль для сертификатов. Его необходимо сохранить в **GitHub Secrets** под названием
+  **MATCH_PASSWORD**, так как он понадобиться в скрипте.
+
+```bash
+fastlane match development
+```
+
+- Так же мы генерируем сертификаты распространения для **App Store**.
+
+```bash
+fastlane match appstore
+```
+
+Если все прошло успешно, вы увидите что-то вроде этого:
+
+```bash
+All required keys, certificates and provisioning profiles are installed 🙌
+```
+
+- После выполнения всех шагов, у вас должны появиться сертификаты и ключи в вашем репозитории.
+
+![Fastlane Certificates](images/secret_repository.png)
+
+## Структура скрипта для Fastlane
 
 Файл Fastlane со скриптом состоит из следующих частей:
 
@@ -109,6 +212,7 @@ TEMP_KEYCHAIN_PASSWORD = ENV["TEMP_KEYCHAIN_PASSWORD"]
 APPLE_KEY_ID = ENV["APPLE_KEY_ID"]
 APPLE_ISSUER_ID = ENV["APPLE_ISSUER_ID"]
 APPLE_KEY_CONTENT = ENV["APPLE_KEY_CONTENT"]
+MATCH_PASSWORD = ENV["MATCH_PASSWORD"]
 ```
 
 - Методы для создания временного хранилища и его удаления. Необходимо, поскольку мы импортируем сертификаты, нам
@@ -256,7 +360,6 @@ on:
     - **flutter-action** - установка **Flutter SDK**
     - **cache** - кеширование **pub packages**
     - **run** - установка пакетов **pub**
-    - **checkout** - клонирование нашего репозитория
     - **run** - установка **Pods**
     - **run** - установка **bundle**
     - **run** - запуск **Fastlane** c указанием переменных окружения полученных из **GitHub Secrets**
@@ -292,9 +395,6 @@ jobs:
 
       - run: flutter pub get
 
-      - name: Set up git and fetch history
-        uses: actions/checkout@v4
-
       - name: Pods install and update
         run: |
           cd ./ios 
@@ -318,14 +418,33 @@ jobs:
           APPLE_KEY_ID: '${{ secrets.APPLE_KEY_ID }}'
           APPLE_ISSUER_ID: '${{ secrets.APPLE_ISSUER_ID }}'
           APPLE_KEY_CONTENT: '${{ secrets.APPLE_KEY_CONTENT }}'
+          MATCH_PASSWORD: '${{ secrets.MATCH_PASSWORD }}'
 ```
 
 ## Результат
 
 После выполнения всех шагов, вы сможете автоматически выгружать ваше приложение на **TestFlight** с помощью **GitHub
 Actions** и **Fastlane**. Теперь вам не нужно тратить время на ручное создание **build**-ов и выгрузку их на
-**TestFlight**. Все это можно сделать автоматически. 
+**TestFlight**. Все это можно сделать автоматически.
 
-![Success Deploy](images/success_deploy.png) 
+![Success Deploy](images/success_deploy.png)
 
 ![Success Details](images/success_deploy_details.png)
+
+## Возможные проблемы
+
+Когда вы запускаете скрипт **Fastlane**, у вас может возникнуть ошибка, во время выполнения команды
+
+```bash
+Invalid password passed via 'MATCH_PASSWORD'
+```
+
+Если Вы уверены, что пароль введен верно - попробуйте удалить сертификаты и пересоздать их с новым паролем.
+
+```bash
+fastlane match nuke distribution
+fastlane match nuke development
+fastlane match development
+fastlane match appstore
+```
+
