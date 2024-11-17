@@ -122,7 +122,7 @@ class MessageScope extends StatefulWidget {
   State<MessageBuilder> createState() => _MessageScopeState();
 }
 
-class _MessageScopeState extends ScopeProvider<MessageBuilder, MessageState,
+class _MessageScopeState extends ScopeProvider<MessageScope, MessageState,
     MessageBloc, MessageController> {
   @override
   MessageController createController() {
