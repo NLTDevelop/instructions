@@ -20,6 +20,10 @@ New Types of Instances
 - ScopeProvider: An abstract class that acts as a base for any StatefulWidget that wants to provide
   a ScopeController, Bloc, and listen to state changes. It ensures that the widget is tightly coupled
   with the specific Bloc and controller it is managing.
+- BlocEvent: An abstract class that all events of a Bloc must extend. Events in the Bloc pattern
+  represent actions that trigger state changes.
+- BlocState: An abstract class that all states of a Bloc must extend. It uses the Equatable package
+  to ensure states can be compared by value rather than by reference.
 
 ## Rules
 **State and Event Classes**: Each state and event of a Bloc should extend BlocState and BlocEvent
