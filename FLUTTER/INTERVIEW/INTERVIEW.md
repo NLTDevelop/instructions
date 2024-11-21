@@ -1,58 +1,461 @@
 # Flutter Developer Interview Questions
 
-## Базовые вопросы по Flutter
+## Общие вопросы
 
-1. В чем отличие package и plugin в Flutter?
+### Что такое ООП?
 
-   A package is a set of classes, interfaces, and sub-packages that allow users to create modular code that can be
-   shared easily. Instead of starting from scratch, using packages can help construct applications fast. In Flutter, you
-   may use a package to add new widgets or functionality to an app.
+**Объектно-ориентированное программирование** — это парадигма программирования, основанная на представлении программы в
+виде совокупности объектов, каждый из которых является экземпляром определенного класса, а классы образуют иерархию
+наследования.
 
-   On the other hand, a plugin is a piece of software that enhances your app's functionality. Plugins play a crucial
-   role in the Flutter ecosystem.
+Основные принципы **ООП**:
 
-2. Что такое ключи и как их использовать?
-   A set of IDs for Widgets, Elements and SemanticsNodes make up the key class. Keys are responsible for preserving the
-   state of widgets when they are updated inside the widget tree. Keys may also be used to modify and rearrange
-   collections of widgets of the same type and defined states.
+- **Абстракция** - моделирование взаимодействий сущностей в виде абстрактных классов и интерфейсов для представления
+  системы;
+- **Инкапсуляция** - сокрытие деталей реализации объекта от внешнего мира и доступ к ним только через интерфейс;
+- **Наследование** - возможность создания новых классов на основе существующих;
+- **Полиморфизм** - возможность использования объектов с одинаковым интерфейсом без знания их конкретного типа.
 
-   Otherwise, keys may be superfluous to the code, even if they aren't harmful in any manner. Keys are useful when you
-   need to edit a widget tree with stateful widgets, but not when the tree is entirely made up of stateless widgets.
+**Класс** - это шаблон для создания объектов, который определяет состояние и поведение объекта.
 
-3. What are the different types of streams in Dart?
-   Streams provide an asynchronous sequence of data. Asynchronous programming uses the idea of streams. They refer to a
-   program's asynchronous succession of data occurrences. We put a value on one end and a listener on the other, similar
-   to a pipe. Several listeners can be combined into a single stream, and when they are placed in the pipeline, they
-   will all get the same data. It is possible to utilize the SteamController to establish new streams or manage existing
-   ones. There are two types of streams:
+**Объект** - это экземпляр класса, который содержит данные и методы для работы с ними.
 
-   Single Subscription Streams
-   These streams convey events in chronological order. They're thought of as individual sequences inside a greater
-   totality. When the sequence in which events are received matters, such as when reading a file, these streams are
-   employed. Throughout the sequence, there can only be one listener, and the event will not be triggered if there isn't
-   one.
-   Broadcast Streams
-   These broadcasts provide subscribers with information about upcoming events. Subscribers can instantly begin
-   listening
-   to events after subscribing to them. These are flexible streams that allow several listeners to listen at the same
-   time.
-   Furthermore, even after canceling a previous membership, one may listen again.
+--- 
 
-4. What is pubspec.yaml file?
+### Что такое SOLID?
 
-   While creating a Flutter project, a particular type of file is always included at the top of the project. This file
-   is known as the pubspec.yaml file, also called ‘pubspec’. This file contains information about a project's
-   dependencies, such as packages and their versions, typefaces, and so on. It ensures that the package version is the
-   same the next time you create the project. You can also place restrictions on the app. This project's configuration
-   file will be used a lot while working with the Flutter project. This specification is written in YAML, a
-   human-readable markup language.
+**SOLID** - это аббревиатура, которая описывает пять базовых принципов объектно-ориентированного программирования:
 
-5. Can you tell us the four main elements of Flutter?
-   The four main elements of Flutter are:
-   Flutter engine
-   Widgets
-   Design-specific widgets
-   Foundation Library
+- **Принцип единственной ответственности (Single Responsibility Principle)** - класс должен иметь только одну
+  ответственность;
+- **Принцип открытости/закрытости (Open/Closed Principle)** - программные сущности должны быть открыты для расширения,
+  но закрыты для изменения;
+- **Принцип подстановки Барбары Лисков (Liskov Substitution Principle)** - объекты базового класса могут быть заменены
+  объектами его производного класса без изменения свойств программы;
+- **Принцип разделения интерфейса (Interface Segregation Principle)** - клиенты не должны зависеть от интерфейсов,
+  которые они не используют;
+- **Принцип инверсии зависимостей (Dependency Inversion Principle)** - модули верхнего уровня не должны зависеть от
+  модулей нижнего уровня. Оба типа модулей должны зависеть от абстракций.
+
+### Что такое структура данных?
+
+Если коротко, структура данных — это контейнер, информация в котором скомпонована характерным образом. Благодаря такой
+«компоновке», структура данных будет эффективна в одних операциях и неэффективна — в других. В зависимости от
+конкретного сценария, данные нужно хранить в подходящем формате. У нас в распоряжении — ряд структур данных,
+обеспечивающих нас такими различными форматами.
+
+Наиболее распространенные структуры данных:
+
+- Массивы
+- Стеки
+- Очереди
+- Связные списки
+- Деревья
+- Графы
+- Боры (в сущности, это тоже деревья)
+- Хеш-таблицы
+
+**Массив** — это простейшая и наиболее распространенная структура данных. Другие структуры данных, например, стеки и
+очереди, производны от массивов. Каждому элементу данных присваивается положительное числовое значение, именуемое
+индексом и соответствующее положению этого элемента в массиве. В большинстве языков программирования элементы в массиве
+нумеруются с 0.
+
+Существуют массивы двух типов:
+
+- Одномерные
+- Многомерные (массивы, в которые вложены другие массивы)
+
+**Стеки** - это линейные структуры данных, элементы в которых хранятся в последовательном порядке.
+Стек можно сравнить с высокой стопкой книг. Если вам нужна какая-то книга, лежащая около центра стопки, вам сначала
+придется снять все книги, лежащие выше. Именно так работает принцип LIFO (Последним пришел — первым вышел).
+
+**Очереди**, как и стек — это линейная структура данных, элементы в которой хранятся в последовательном порядке.
+Единственное существенное отличие между стеком и очередью заключается в том, что в очереди вместо LIFO действует принцип
+FIFO (Первым пришел — первым вышел).
+Идеальный реалистичный пример очереди — это и есть очередь покупателей в билетную кассу. Новый покупатель становится в
+самый хвост очереди, а не в начало. Тот же, кто стоит в очереди первым, первым приобретет билет и первым ее покинет.
+
+**Связный список** — еще одна важная линейная структура данных, на первый взгляд напоминающая массив. Однако, связный
+список отличается от массива по выделению памяти, внутренней структуре и по тому, как в нем выполняются базовые операции
+вставки и удаления.
+
+Связный список напоминает цепочку узлов, в каждом из которых содержится информация: например, данные и указатель на
+следующий узел в цепочке. Есть головной указатель, соответствующий первому элементу в связном списке, и, если список
+пуст, то он направлен просто на null (ничто).
+
+При помощи связных списков реализуются файловые системы, хеш-таблицы и списки смежности.
+
+Существуют такие типы связных списков:
+
+- Односвязный список (однонаправленный)
+- Двусвязный список (двунаправленный)
+
+**Граф** — это множество узлов, соединенных друг с другом в виде сети. Узлы также называются вершинами. Пара (x,y)
+называется ребром, это означает, что вершина x соединена с вершиной y. Ребро может иметь вес/стоимость — показатель,
+характеризующий, насколько затратен переход от вершины x к вершине y.
+
+Типы графов:
+
+- Неориентированный граф - ребра не имеют направления
+- Ориентированный граф - ребра имеют направление
+
+В языке программирования графы могут быть двух видов:
+
+- Матрица смежности - двумерный массив, в котором хранится информация о ребрах
+- Список смежности - список, в котором хранится информация о вершинах, смежных с данной
+
+**Дерево** — это иерархическая структура данных, состоящая из вершин (узлов) и ребер, которые их соединяют. Деревья
+подобны графам, однако, ключевое отличие дерева от графа таково: в дереве не бывает циклов.
+
+Деревья широко используются в области искусственного интеллекта и в сложных алгоритмах, выступая в качестве эффективного
+хранилища информации при решении задач.
+
+**Бор**, также именуемый «префиксное дерево» — это древовидная структура данных, которая особенно эффективна при решении
+задач на строки. Она обеспечивает быстрое извлечение данных и чаще всего применяется для поиска слов в словаре,
+автозавершений в поисковике и даже для IP-маршрутизации.
+
+**Хеширование** — это процесс, применяемый для уникальной идентификации объектов и сохранения каждого объекта по заранее
+вычисленному индексу, именуемому его «ключом». Таким образом, объект хранится в виде «ключ-значение», а коллекция таких
+объектов называется «словарь». Каждый объект можно искать по его ключу. Существуют разные структуры данных, построенные
+по принципу хеширования, но чаще всего из таких структур применяется хеш-таблица.
+
+---
+
+### Императивное и декларативное программирование
+
+- **Императивный стиль** - описываем, как добиться желаемого результата
+- **Декларативный стиль** - описываем, какой именно результат нам нужен
+
+---
+
+### Стек и куча
+
+- **Стек** — это область оперативной памяти, в которой хранятся временные данные, таких как локальные переменные и
+  адреса возврата функций. Объем памяти, выделенный под стек, ограничен. Стек работает в порядке LIFO
+- **Куча** — это область оперативной памяти, в которой хранятся данные, созданные во время выполнения программы. Куча
+  используется для динамического выделения памяти для объектов, которые могут изменять размер во время выполнения
+  программы. Размер кучи задаётся при запуске приложения, но, в отличие от стека, он ограничен лишь физически. Выделение
+  памяти в куче происходит медленнее, чем в стеке.
+
+---
+
+### DI и Service Locator
+
+- **DI** - передача зависимостей класса через параметры конструктора.
+- **Service Locator** - синглтон / класс с набором статических методов. Доступ к Service Locator может производиться из
+  любого место в коде. В этом заключается его основной минус
+
+## Общие вопросы по Dart
+
+### Отличия final и const
+
+- **final** - переменная, значение которой устанавливается только один раз и не может быть изменено после этого. При
+  этом, значение переменной может быть установлено во время выполнения программы. Переменная final не обязательно должна
+  быть инициализирована в момент объявления.
+- **const** - переменная, значение которой устанавливается только один раз и не может быть изменено после этого. При
+  этом, значение переменной должно быть установлено во время компиляции программы. Переменная const обязательно должна
+  быть инициализирована в момент объявления.
+
+---
+
+### Что такое JIT и AOT компиляция?
+
+- **JIT (Just-In-Time)** - компиляция во время выполнения программы. Программа компилируется в машинный код во время
+  выполнения программы. Программа запускается быстрее, но работает медленнее. Используется во время разработки.
+- **AOT (Ahead-Of-Time)** - компиляция до выполнения программы. Программа компилируется в машинный код до выполнения
+  программы. Программа запускается медленнее, но работает быстрее. Используется во время релиза.
+
+---
+
+### Какие отличия между Hot Restart и Hot Reload?
+
+- **Hot Reload** загружает изменения в Dart VM и ребилдит дерево виджетов, сохраняя состояние. Не перезапускает main() и
+  initState(). Позволяет быстро вносить изменения в приложение.
+- **Hot Restart** загружает изменения в Dart VM и перезагружает всё приложение. Перезапускает main() и initState().
+
+---
+
+### Что такое hashcode?
+
+**Хэш-код** - геттер, у любого объекта, который возвращает int. Нужен при сохранении объекта в map или set. Хэш-коды
+должны быть одинаковыми для объектов, которые равны друг другу в соответствии с оператором ==
+int get hashCode => Object.hash(runtimeType, ..., ...);
+
+---
+
+### Что такое extension?
+
+**Extension** — это синтаксический сахар, который позволяет расширить существующий класс (добавить методы, операторы,
+сеттеры и геттеры). При этом, класс, который расширяется, не изменяется.
+
+--- 
+
+### Что такое mixin?
+
+**Миксин** - это механизм множественного наследования, который позволяет классам использовать функциональность других
+классов без явного наследования.
+
+Миксины в Dart определяются ключевым словом mixin. Они могут содержать методы, поля и геттеры/сеттеры, но не могут иметь
+конструкторов. Вместо этого, миксины инициализируются автоматически, когда они применяются к классу. Для использования
+миксинов применяется оператор with
+
+Если у миксинов будет метод с одинаковым названием, то останется реализация, которая указана в последнем миксине. Так
+как миксины будут переопределять этот метод
+
+--- 
+
+### Система типов в Dart
+
+![System Type](images/system_type.png)
+С появлением **null safety** в Dart, иерархия классов и интерфейсов была изменена для учета новых требований по
+безопасности типов. Вот основные изменения:
+
+1. Добавление non-nullable типов:
+    - Non-nullable типы обозначают, что значение не может быть null.
+    - Все существующие типы были разделены на non-nullable и nullable версии. Например, int стал int (non-nullable) и
+      int?(nullable)
+2. Новый корень иерархии - "Object?":
+    - Введен новый корневой класс Object?, который может быть null. В предыдущих версиях Dart, корневым классом был
+      Object
+3. Изменения в иерархии ошибок:
+    - Введен новый класс NullThrownError, который представляет собой ошибку, возникающую при попытке выбросить null
+      исключение
+4. late и required:
+    - Введены ключевые слова late и required для обозначения переменных, которые могут быть инициализированы позднее и
+      обязательно должны быть проинициализированы при объявлении, соответственно.
+
+---
+
+### В чем отличие dynamic, var и Object?
+
+- **dynamic** - переменная с типом dynamic может содержать любое значение и тип. Проверка типов не производится во время
+  компиляции, а только во время выполнения программы.
+- **var** - переменная с типом var определяется во время компиляции и не может быть изменена после этого. При этом, тип
+  переменной определяется автоматически на основе значения, которое ей присваивается.
+- **Object** - переменная с типом Object может содержать любое значение и тип. Проверка типов производится во время
+  компиляции.
+
+---
+
+### Что такое Late
+
+**Late** - это ключевое слово в dart, которое позволяет объявить non-nullable переменную и при этом не установить для
+нее значение. Значение инициализируется только тогда, когда мы к нему обращаемся. Late переменные могут быть только
+non-nullable.
+
+---
+
+### Что такое Generics
+
+**Generics** - это параметризованные типы. Они позволяют программе уйти от жесткой привязки к определенным типам,
+определить функционал так, чтобы он мог использовать данные любых типов и обеспечить их безопасность. Так же
+обобщения снижают повторяемость кода, дают вам возможность предоставить единый интерфейс и реализацию для многих
+типов.
+
+---
+
+### Dart VM
+
+Dart VM (Dart virtual machine) - среда выполнения Dart. Dart VM является основным компонентом Dart SDK и используется
+для запуска Dart кода. Состоит из следующих компонентов:
+
+- Среда исполнения
+- Сборщик мусора
+- Основные библиотеки и нативные методы
+- Система отладка
+- Профилировщик
+- Симулятор ARM архитектуры
+
+---
+
+### Что такое зоны в Dart?
+
+**Зона** - это механизм, который позволяет управлять и обрабатывать ошибки и другие события, происходящие в определенных
+областях кода.
+
+- Защита вашего приложения от завершения из-за необработанного исключения
+- Ассоциирование данных, известных как zone-local values, с отдельными зонами
+- Переопределение ограниченного набора методов, таких как print() и scheduleMicrotask(), внутри части или всего кода
+- Выполнение операции каждый раз, когда код входит или выходит из зоны. Эти операции могут включать в себя запуск или
+  остановку таймера, или сохранение stacktrace-а
+
+### Какие есть классы для ошибок и исключений?
+
+- **Exception** - это общий класс для исключений, которые обычно возникают из-за ошибок в программе, и их можно
+  обработать и восстановиться от них.
+- **Error** - это класс для ошибок, которые обычно не могут быть восстановлены, и они указывают на серьезные проблемы в
+  программе или системе.
+
+--- 
+
+### Что такое тип Never?
+
+**Never** - это тип, означающий, что ни один тип не разрешен и Never сам по себе не может быть создан. Используется
+как возвращаемый тип при гарантированной ошибке. Например, функция, которая всегда бросает исключение, имеет тип
+Never. Также используется для функций, которые никогда не завершаются.
+
+--- 
+
+### Для чего необходимо ключевое слово Covariant?
+
+**Covariant** - это ключевое слово в dart, которое указывает на то, что тип возвращаемого значения может быть изменен
+на более узкий тип в подклассе. Это позволяет использовать подтипы вместо супертипов.
+
+--- 
+
+### Что такое аннотации?
+
+**Аннотации** — это синтаксические метаданные, которые могут быть добавлены к коду. Другими словами, это возможность
+добавить дополнительную информацию к любому компоненту кода, например, к классу или методу. Аннотации всегда начинаются
+с символа @ (@override, @required). Любой класс может служить аннотацией, если в нем определен const конструктор.
+Аннотации могут использоваться для различных целей, таких как:
+
+- Пометка кода для статического анализа
+- Генерация кода
+- Отладка
+- Документирование
+- Определение метаданных
+- т.д.
+
+## Асинхронность и многопоточность
+
+### Что представляет собой Future?
+
+**Future** - это обёртка над результатом выполнения асинхронной операции. Код Future НЕ выполняется параллельно, а
+выполняется в последовательности, определяемой Event Loop. Future может находиться в одном из трех состояний:
+
+- **Uncompleted** - операция не завершена
+- **Completed with Result** - операция завершена успешно
+- **Completed with Error** - операция завершена с ошибкой
+
+Future имеет следующие типы конструкторов:
+
+- **Future(FutureOr<T> computation())**: создает объект future, который с помощью метода Timer.run запускает функцию
+  computation асинхронно и возвращает ее результат.
+- **FutureOr<T>**: указывает, что функция computation должна возвращать либо объект Future, либо объект типа T.
+  Например,
+  чтобы получить объект Future, функция computation должна возвращать либо объект Future, либо объект int
+- **Future.delayed(Duration duration, [FutureOr<T> computation()])**: создает объект Future, который запускается после
+  временной задержки, указанной через первый параметр Duration. Второй необязательный параметр указывает на функцию,
+  которая запускается после этой задержки.
+- **Future.error(Object error, [StackTrace stackTrace])**: создает объект Future, который содержит информацию о
+  возникшей
+  ошибке.
+- **Future.microtask(FutureOr<T> computation())**: создает объект Future, который с помощью функции scheduleMicrotask
+  запускает функцию computation асинхронно и возвращает ее результат.
+- **Future.sync(FutureOr<T> computation())**: создает объект Future, который содержит результат немедленно вызываемой
+  функции computation.
+- **Future.value([FutureOr<T> value])**: создает объект Future, который содержит значение value.
+
+---
+
+### Как работает await?
+
+**await** - это ключевое слово, которое используется в асинхронной функции для ожидания завершения Future. Когда код
+доходит до await, выполнение функции приостанавливается до тех пор, пока Future не завершится. После этого выполнение
+кода продолжается. Под капотом await перемещает весь последующий код в then у Future, которую мы дожидаемся.
+
+---
+
+### Что такое Event Loop?
+
+**Event Loop** - вечный цикл, выполняющий все поступающие в изолят задачи. В нём есть две FIFO очереди задач:
+
+- Очередь MicroTask. Используется для очень коротких действий, которые должны быть выполнены асинхронно, сразу после
+  завершения какой-либо инструкции перед тем, как передать управление обратно Event Loop. Очередь MicroTask имеет
+  приоритет перед очередью Event. Используется для планирования операций, которые должны быть выполнены сразу после
+  текущей операции.
+- Очередь Event. Используется для планирования операций, которые получают результат от внешних событий (операции
+  ввода/вывода, жесты, рисование, таймеры, потоки). Очередь Event обрабатывается после очереди MicroTask.
+
+---
+
+### Что такое Completer?
+
+**Completer** позволяет поставлять Future, отправлять событие о выполнении или событие об ошибке. Это может быть
+полезно, когда нужно сделать цепочку Future и вернуть результат.
+
+---
+
+### Что такое Stream и какие виды Stream существуют?
+
+**Stream** - это последовательность асинхронных событий. Stream сообщает вам, что есть событие и когда оно будет
+готово. Существует два вида Stream:
+
+- Single subscription - это вид потока, при котором может быть только один подписчик.
+- Broadcast - это вид потока, при котором может быть много подписчиков. При этом Broadcast стримы отдают свои данные вне
+  зависимости от того, подписан ли кто-нибудь на них или нет. Подписчики стрима получают события только с момента
+  подписки, а не с момента старта жизни стрима
+
+---
+
+### Что такое генераторы и какие виды генераторов существуют?
+
+Генераторы (sync* / async*) - генератор это ключевое слово, которое позволяет создавать последовательность значений
+с помощью yield. Существует два вида генераторов:
+
+- **sync** - это синхронный генератор. Возвращает Iterable.
+- **async** - это aсинхронный генератор. Возвращает Stream
+
+---
+
+## Многопоточность в Dart и Flutter
+
+### Как обстоят дела с многопоточностью в Dart?
+
+**Dart** — однопоточный язык программирования. Он исполняет одновременно одну инструкцию. Но при этом мы можем запустить
+код в отдельный поток с помощью Isolate
+
+---
+
+### Что такое Isolate и Compute? Какие проблемы многопоточности существуют?
+
+**Isolate** - это легковесный процесс (поток исполнения), который выполняется параллельно с другими потоками и
+процессами в приложении. Каждый Isolate в Dart имеет свой собственный экземпляр виртуальной машины Dart, собственную
+память и управляется с помощью своего Event Loop.
+
+**Compute** - это функция, которая создаёт изолят и запускает переданный код.
+
+Среди проблем многопоточности можно выделить:
+
+- **Deadlock** — каждый из потоков ожидают событий, которые могут предоставить другие потоки
+- **Race conditions** — проявление недетерминизма исполнителя программы при различном относительном порядке исполнения
+  команд в различных потоках
+- **Lock Contention** — основное время потока проводится не в исполнении полезной работы, а в ожидании блокированного
+  другим потоком ресурса
+- **Live Lock** — поток захватывает ресурс, но после того, как убедится, что завершить работу не может, освобождает
+  ресурс, аннулируя результаты
+
+## Общие вопросы по Flutter
+
+### Что такое Stateless и Stateful?
+
+- **StatelessWidget** - это виджет, который не имеет состояния, в процессе работы приложения не изменяет своих свойств.
+  Они могут изменяться лишь посредством внешних событий, которые возникают в родительских виджетах.
+- **StatefulWidget** - это виджет, который хранит состояние, в процессе работы приложения он может его изменять
+  динамически с помощью setState().
+
+### В чем отличие package и plugin в Flutter?
+
+**Плагины (Plugin)** - если вкратце - нативные разработки.
+Плагин Flutter — это оболочка собственного кода, такого как Android (Kotlin или Java) и iOS (swift или Objective C).
+Flutter может делать все, что может собственное приложение, за счет использования каналов платформы и передачи
+сообщений.
+
+**Пакеты (Package)** - это библиотеки, которые содержат код, ресурсы и метаданные, предоставленные другими
+разработчиками в экосистемах Flutter и Dart. Это позволяет быстро создать приложение без необходимости разрабатывать все
+с нуля.
+
+---
+
+### Что такое pubspec.yaml файл?
+
+**pubspec.yaml** - это файл конфигурации проекта Flutter, который содержит информацию о зависимостях проекта, таких как
+пакеты и их версии, шрифты и т.д. Он гарантирует, что версия пакета будет такой же, как и в следующий раз, когда вы его
+создадите. Вы также можете наложить ограничения на приложение. Этот файл конфигурации проекта будет использоваться очень
+часто при работе с проектом Flutter. Эта спецификация написана на YAML, читаемом языке разметки.
+
+### Что будет если запустить несколько runApp()?
 
 6. Can you tell us how many kinds of widgets there are in Flutter?
    There are two main types of widgets in Flutter. These include:
@@ -63,15 +466,7 @@ Column, and Container.
 StatefulWidget- It has state information. It contains two classes: the state object and the Widget. It is dynamic
 because it can change the inner data during the Widget's lifetime. Examples are Radio, Form, Checkbox, and TextField.
 
-7.
-
-What is the use of the Await function?
-The Await function is an asynchronous function. Its job is to wait until it gets the final value. Await is used with
-async functions and that run asynchronously, giving users the choice to wait for the asynchronous mode to finish before
-continuing.
-
 8. runApp
-9.
 
 Explain the term “Tree shaking” in Flutter.
 Hide Answer
@@ -98,19 +493,6 @@ To avoid the needless rebuilding of the widgets one can divide the widget tree i
 its own build process. Here const constructor can be used to inform Flutter that the dont need to be rebuilt.
 
 ## INTERMEDIATE FLUTTER INTERVIEW QUESTIONS AND ANSWERS
-
-1.
-
-Tell me about Flutter Provider.
-Widgets are used to build the provider. Inside the provider, one can use all the objects as if they are a part of it
-with the new widget subclasses it creates. Primarily, it works on the concept of PUB-SUB which means one provider with
-many subscribers.
-
-2.
-
-Explain Streams in Flutter?
-Future and Stream are classes in Dart that define asynchronous programming. It behaves asynchronously as it doesn't
-return the next event when requested. Instead, it informs when the next event will be returned when ready.
 
 4.
 
@@ -151,27 +533,6 @@ screen as the widget tree’s root.
     they allow you to write reusable class code in multiple class hierarchies.
 
 
-11. What is the difference between hot reload and hot restart?
-    Hide Answer
-    In Flutter, Hot Reload is the easiest and quickest way to make any changes, create UIs, fix bugs, and add features
-    to the app. A Hot Reload performs all these changes rapidly and makes changes in the UI without disturbing the
-    entire app.
-
-Here’s how to perform Hot Reload:
-
-Run the Flutter editor using command prompt or editor.
-Once the project is created, you can use debug mode and perform hot reload
-In windows, use “ctrl+\” to perform hot reload or using the button. For Mac devices, you can use “cmd+s” to perform hot
-reload. If you’re using the command prompt enter ‘r’ to run.
-A Hot Restart is different from Hot Reload as it demolishes the preserved states of the app and compiles the code from
-scratch.
-Hot Restart takes more time as compared to Hot Reload but takes less time than restart function.
-Here’s how to perform Hot Restart:
-
-Run the editor using command prompt
-Make some changes and run the hot restart
-To start hot restart use the hot reload button or press ctrl+shift+.
-
 15. What is the difference between push and pushReplacement methods in Flutter?
 
 In Flutter, push and pushReplacement are two methods that are used to navigate between different screens in an app. Both
@@ -186,23 +547,6 @@ the back button or swipe gesture.
 So, the main difference between push and pushReplacement methods is that push adds a new screen to the navigation stack
 while pushReplacement replaces the current screen with a new screen.
 
-16. Architecture Layer in Flutter
-
-Flutter's architecture is modular and layered. Here's a breakdown:
-Embedder: The foundational layer, it provides platform-specific integrations, enabling Flutter to run on diverse
-systems.
-Engine: Written in C++, this layer manages core tasks like graphics rendering, text layout, and file/network operations.
-Framework: Sitting atop the Engine, it offers high-level classes for app development. This includes the Widget layer,
-which offers a vast array of visual, structural, platform, and interactive widgets, the Rendering layer that paints the
-widget onto the canvas, and several others that provide services and utilities.
-
-17. Difference between AOT and JIT
-    JIT (Just-In-Time) and AOT (Ahead-Of-Time) are two compilation approaches in Dart.
-    JIT compilation happens at runtime, translating the code into machine language just before it's executed. This
-    allows for features like hot-reloading in Flutter, where changes can be injected into a running application.
-    AOT, on the other hand, compiles the code into machine language before the app is launched. This results in faster
-    startup times and optimized performance, making it the preferred choice for production Flutter apps.
-
 18. Access modifiers in Dart
     Dart offers a set of access modifiers to control the visibility of members: public (default, if no modifier is
     specified), private (indicated by a leading underscore _), and protected (not explicitly available but achieved
@@ -215,28 +559,7 @@ widget onto the canvas, and several others that provide services and utilities.
     constructor that doesn't always return a new instance. Instead, it can return an existing instance, an instance of a
     subtype, or even an instance of a completely different class. While named constructors offer varied initialization
     methods, factories provide greater control over the object creation process.
-20. principles of OOP
-    The four foundational principles of OOP are Encapsulation, Inheritance, Polymorphism, and Abstraction.
-    Encapsulation bundles data and methods operating on that data within a single unit, ensuring data integrity.
-    Inheritance allows a class to inherit properties and behaviors from another class.
-    Polymorphism permits one interface to be used for a general class of actions.
-    Abstraction hides complex implementations and exposes only the necessary functionalities.
-21. SOLID
-    SOLID is an acronym representing five design principles that ensure software is scalable, maintainable, and
-    organized. They are:
-    Single Responsibility Principle: A class should have only one reason to change.
-    Open/Closed Principle: Software entities should be open for extension but closed for modification.
-    Liskov Substitution Principle: Subtypes must be substitutable for their base types.
-    Interface Segregation Principle: Clients should not be forced to depend on interfaces they don't use.
-    Dependency Inversion Principle: High-level modules should not depend on low-level ones; both should depend on
-    abstractions
-22. Object, var, dynamic
-    Object is the root class for all Dart classes, allowing a variable to hold any type of value but requires explicit
-    casting for most operations.
-    dynamic is a type that bypasses static type checking, offering flexibility at the cost of forgoing some compile-time
-    checks.
-    var is a keyword used to declare a variable without specifying its type. Dart determines and fixes the variable's
-    type based on its initial value at compile-time.
+
 23. cascade and spread operators
     The cascade operator (..) allows for performing a series of operations on a single object without breaking the
     chain. For instance:
@@ -244,46 +567,6 @@ widget onto the canvas, and several others that provide services and utilities.
     The spread operator (...) is used to insert multiple elements from one collection into another. It's especially
     useful when constructing lists or other collections:
     var list = [1, 2, ...otherList, 3];
-24. Null Safety
-    Null safety in Dart is a robust feature designed to avoid null reference errors, enhancing the stability of apps.
-    The term "sound" in null safety implies that if an expression is determined by the static type system to be
-    non-nullable, then, under no circumstances can the expression evaluate to null at runtime. This soundness is
-    primarily ensured through static checks, but there can also be runtime checks, which are introduced by choice, to
-    validate the non-nullability of an expression.
-    To denote a variable as nullable, you append a ?:
-    int? nullableVariable;
-    Dart provides operators like ?? to assign a default value when a variable is null, and ?. to invoke a method if an
-    object is non-null:
-    int nonNullable = nullableVariable ?? 0;
-    nullableVariable?.method();
-    To assert that a nullable variable is non-null, the ! operator is used:
-    int nonNullable = nullableVariable!;
-    Employing null safety is vital for preventing null reference exceptions, ensuring the reliability and
-    maintainability of the code, and allowing developers to identify and rectify potential errors during the development
-    phase, contributing to the overall quality of the application.
-25. Isolate, Future and Event Loop
-    In Dart, an Isolate is akin to a separate execution thread with its own memory, ensuring that Dart remains free of
-    shared-state concurrency issues. Each isolate has its own memory heap, ensuring that no isolate's state is
-    accessible from any other.
-    The Event Loop is a mechanism that handles the execution of events or messages for a particular thread. It
-    continually checks if there are tasks to execute and runs them in order.
-    Future represents a potential value or an error that will be available at some time in the future. It's a core part
-    of Dart's asynchronous programming model, allowing developers to write non-blocking code for operations that might
-    take time, like fetching data from a server.
-26. setState()
-    In Flutter, Stateless widgets are static and don't change, ideal for elements like icons or labels that remain
-    constant. They are less resource-intensive and efficient for static content. On the other hand, Stateful widgets can
-    maintain state, allowing for dynamic and interactive UIs, essential for areas of the UI that user can interact with
-    or that can change due to real-time data updates.
-    The setState() function is crucial in Stateful widgets; it signals the framework that the state of a widget has
-    changed, prompting a UI rebuild. For instance, it can be used to change a button's appearance or trigger an action
-    upon user interaction, ensuring the UI accurately reflects the most recent state.
-27. InheritedWidget
-    InheritedWidget is a foundational element in Flutter that facilitates efficient data propagation down the widget
-    tree. It allows a widget to share data with its descendants without explicitly passing the data through a
-    constructor. For instance, themes and locales are often provided using InheritedWidget. When a widget wants to
-    access data from an InheritedWidget, it uses the context.dependOnInheritedWidgetOfExactType() method. This mechanism
-    is particularly useful for providing configuration data or shared state to multiple widgets in a subtree.
 28. State Managers
     In Flutter, state management refers to the way developers handle the data used by the app to influence its behavior
     and appearance. It's about maintaining and manipulating the state, or data, of a widget, and determining how the
@@ -315,272 +598,10 @@ widget onto the canvas, and several others that provide services and utilities.
     development are crucial.
     In essence, while Bloc offers structured solutions for intricate scenarios, Cubit is optimal for simpler, more
     straightforward state management needs.
-30. DI and SL
-32. Структуры данных
-
-Структуры данных нужны для хранения данных в подходящем виде
-
-Массивы
-Стеки (LIFO - последний вошёл, первый вышел)
-Очереди (FIFO - первый вошёл, первый вышел)
-Связные списки
-Деревья
-Графы
-Хеш-таблицы
-
-33. Императивное и декларативное программирование
-
-Императивный стиль - описываем, как добиться желаемого результата
-Декларативный стиль - описываем, какой именно результат нам нужен
-
-34. Стек и куча
-
-Стек — это область оперативной памяти, в которой хранятся временные данные, таких как локальные переменные и адреса
-возврата функций. Объем памяти, выделенный под стек, ограничен. Стек работает в порядке LIFO
-Куча — это область оперативной памяти, в которой хранятся данные, созданные во время выполнения программы. Куча
-используется для динамического выделения памяти для объектов, которые могут изменять размер во время выполнения
-программы. Размер кучи задаётся при запуске приложения, но, в отличие от стека, он ограничен лишь физически. Выделение
-памяти в куче происходит медленнее, чем в стеке.
-
-35. Hot Restart и Hot Reload
-
-Hot Reload загружает изменения в Dart VM и ребилдит дерево виджетов, сохраняя состояние. Не перезапускает main() и
-initState()
-Hot Restart загружает изменения в Dart VM и перезагружает всё приложение. Перезапускает main() и initState(). Состояние
-не сохраняется
-
-36. HashCode
-
-Хэш-код - геттер, у любого объекта, который возвращает int. Нужен при сохранении объекта в map или set. Хэш-коды должны
-быть одинаковыми для объектов, которые равны друг другу в соответствии с оператором ==
-int get hashCode => Object.hash(runtimeType, ..., ...);
-
-37. Extension
-
-Extension — это синтаксический сахар, который позволяет расширить существующий класс (добавить методы, операторы,
-сеттеры и геттеры)
-
-38. Mixin
-
-Миксин - это механизм множественного наследования, который позволяет классам использовать функциональность других
-классов без явного наследования.
-
-Миксины в Dart определяются ключевым словом mixin. Они могут содержать методы, поля и геттеры/сеттеры, но не могут иметь
-конструкторов. Вместо этого, миксины инициализируются автоматически, когда они применяются к классу. Для использования
-миксинов применяется оператор with
-
-Если у миксинов будет метод с одинаковым названием, то останется реализация, которая указана в последнем миксине. Так
-как миксины будут переопределять этот метод
-
-39. Система типов в Dart
-    С появлением null safety в Dart, иерархия классов и интерфейсов была изменена для учета новых требований по
-    безопасности типов. Вот основные изменения:
-    Добавление non-nullable типов:
-
-Non-nullable типы обозначают, что значение не может быть null.
-Все существующие типы были разделены на non-nullable и nullable версии. Например, int стал int (non-nullable) и int? (
-nullable)
-Новый корень иерархии - "Object?":
-
-Введен новый корневой класс Object?, который может быть null. В предыдущих версиях Dart, корневым классом был Object
-Изменения в иерархии ошибок:
-
-Введен новый класс NullThrownError, который представляет собой ошибку, возникающую при попытке выбросить null исключение
-late и required:
-
-Введены ключевые слова late и required для обозначения переменных, которые могут быть инициализированы позднее и
-обязательно должны быть проинициализированы при объявлении, соответственно.
-![System Type](images/system_type.png)
-
-40. Late
-
-Late - это ключевое слово в dart, которое позволяет объявить non-nullable переменную и при этом не установить для нее
-значение. Значение инициализируется только тогда, когда мы к нему обращаемся
-
-Generics
-
-41. Generics - это параметризованные типы. Они позволяют программе уйти от жесткой привязки к определенным типам,
-    определить функционал так, чтобы он мог использовать данные любых типов и обеспечить их безопасность. Так же
-    обобщения снижают повторяемость кода, дают вам возможность предоставить единый интерфейс и реализацию для многих
-    типов.
-
-42. Dart VM
-
-Dart VM (Dart virtual machine) - среда выполнения Dart
-
-Компоненты:
-
-Среда исполнения
-Сборщик мусора
-Основные библиотеки и нативные методы
-Система отладка
-Профилировщик
-Симулятор ARM архитектуры
-
-43. Зоны
-
-Зона - это механизм, который позволяет управлять и обрабатывать ошибки и другие события, происходящие в определенных
-областях кода.
-
-Защита вашего приложения от завершения из-за необработанного исключения
-Ассоциирование данных, известных как zone-local values, с отдельными зонами
-Переопределение ограниченного набора методов, таких как print() и scheduleMicrotask(), внутри части или всего кода
-Выполнение операции каждый раз, когда код входит или выходит из зоны. Эти операции могут включать в себя запуск или
-остановку таймера или сохранение stacktrace-а
-
-44. Типы ошибок
-
-Exception - это общий класс для исключений, которые обычно возникают из-за ошибок в программе, и их можно обработать и
-восстановиться от них:
-Error - это класс для ошибок, которые обычно не могут быть восстановлены, и они указывают на серьезные проблемы в
-программе или системе:
---- 
-
-45. Never
-
-Never - это тип, означающий, что ни один тип не разрешен и Never сам по себе не может быть создан. Используется как
-возвращаемый тип при гарантированной ошибке.
-
---- 
-
-Covariant
-
-Covariant - это ключевое слово в dart, которое указывает на то, что тип возвращаемого значения может быть изменен на
-более узкий тип в подклассе.
-
---- 
-
-
-Аннотации
-
-Аннотации — это синтаксические метаданные, которые могут быть добавлены к коду. Другими словами, это возможность
-добавить дополнительную информацию к любому компоненту кода, например, к классу или методу. Аннотации всегда начинаются
-с символа @ (@override, @required). Любой класс может служить аннотацией, если в нем определен const конструктор.
 
 ---
 
 
-Future - это обёртка над результатом выполнения асинхронной операции. Код Future НЕ выполняется параллельно, а
-выполняется в последовательности, определяемой Event Loop.
-Состояния Future:
-
-Uncompleted - операция не завершена
-Completed with Result - операция завершена успешно
-Completed with Error - операция завершена с ошибкой
-
----
-
-
-Конструкторы Future
-
-Future(FutureOr<T> computation()): создает объект future, который с помощью метода Timer.run запускает функцию
-computation асинхронно и возвращает ее результат.
-FutureOr<T>: указывает, что функция computation должна возвращать либо объект Future либо объект типа T. Например, чтобы
-получить объект Future, функция computation должна возвращать либо объект Future, либо объект int
-Future.delayed(Duration duration, [FutureOr<T> computation()]): создает объект Future, который запускается после
-временной задержки, указанной через первый параметр Duration. Второй необязательный параметр указывает на функцию,
-которая запускается после этой задержки.
-Future.error(Object error, [StackTrace stackTrace]): создает объект Future, который содержит информацию о возникшей
-ошибке.
-Future.microtask(FutureOr<T> computation()): создает объект Future, который с помощью функции scheduleMicrotask
-запускает функцию computation асинхронно и возвращает ее результат.
-Future.sync(FutureOr<T> computation()): создает объект Future, который содержит результат немедленно вызываемой функции
-computation.
-Future.value([FutureOr<T> value]): создает объект Future, который содержит значение value.
-
----
-
-
-Await под капотом
-
-Под капотом await перемещает весь последующий код в then у Future, которую мы дожидаемся
-
----
-
-
-Event Loop
-
-Event Loop - вечный цикл, выполняющий все поступающие в изолят задачи. В нём есть две FIFO очереди задач:
-
----
-
-
-Очередь MicroTask
-Используется для очень коротких действий, которые должны быть выполнены асинхронно, сразу после завершения какой-либо
-инструкции перед тем, как передать управление обратно Event Loop. Очередь MicroTask имеет приоритет перед очередью Event
-
----
-
-
-Очередь Event
-Используется для планирования операций, которые получают результат от внешних событий (операции ввода/вывода, жесты,
-рисование, таймеры, потоки)
-
----
-
-
-Completer
-
-Completer позволяет поставлять Future, отправлять событие о выполнении или событие об ошибке. Это может быть полезно,
-когда нужно сделать цепочку Future и вернуть результат.
-
----
-
-
-Stream
-
-Stream - это последовательность асинхронных событий. Stream сообщает вам, что есть событие и когда оно будет готово
-
-Single subscription - это вид потока, при котором может быть только один подписчик.
-Broadcast - это вид потока, при котором может быть много подписчиков. При этом Broadcast стримы отдают свои данные вне
-зависимости от того, подписан ли кто-нибудь на них или нет. Подписчики стрима получают события только с момента
-подписки, а не с момента старта жизни стрима
-
----
-
-Генераторы (sync* / async*)
-
-Генератор это ключевое слово, которое позволяет создавать последовательность значений с помощью yield
-
-sync* - это синхронный генератор. Возвращает Iterable
-async* - это aсинхронный генератор. Возвращает Stream
-
----
-
-
-Многопоточность в Dart и Flutter
-
-Dart — однопоточный язык программирования. Он исполняет одновременно одну инструкцию. Но при этом мы можем запустить код
-в отдельном поток с помощью Isolate
-
----
-
-
-Isolate
-
-Isolate - это легковесный процесс (поток исполнения), который выполняется параллельно с другими потоками и процессами в
-приложении. Каждый Isolate в Dart имеет свой собственный экземпляр виртуальной машины Dart, собственную память и
-управляется с помощью своего Event Loop.
-
----
-
-
-Compute
-
-Compute - это функция, которая создаёт изолят и запускает переданный код.
-
----
-
-
-Проблемы многопоточности
-
-Deadlock — каждый из потоков ожидают событий, которые могут предоставить другие потоки
-Race conditions — проявление недетерминизма исполнителя программы при различном относительном порядке исполнения команд
-в различных потоках
-Lock Contention — основное время потока проводится не в исполнении полезной работы, а в ожидании блокированного другим
-потоком ресурса
-Live Lock — поток захватывает ресурс, но после того, как убедится, что завершить работу не может, освобождает ресурс,
-аннулируя результаты
 
 ---
 Жизненный цикл Stateful виджета
@@ -799,6 +820,8 @@ JSONMethodCodec делегирует кодирование значений п�
 Каналы событий — это специализированные каналы платформы, предназначенные для использования в случае представления
 событий платформы Flutter в виде потока Dart. Работает как обычный Stream
 
+## Анимации в Flutter
+
 Этапы анимации
 
 Ticker просит SchedulerBinding зарегистрировать обратный вызов и сообщить Flutter Engine, что надо разбудить его, когда
@@ -896,180 +919,85 @@ Framework запускает процесс оптимизации памяти,
 объекты перерабатываются
 Все метки стираются
 
-Способы осуществления навигации
+## Тестирование
 
-Navigator
+### Виды тестов
 
-Идёт из коробки
-Go Router
+- **Модульный тест** тестирует одну функцию, метод или класс. Его цель - проверить правильность работы определенной
+  функции, метода или класса. Внешние зависимости для тестируемого модуля обычно передаются как параметр.
+- **Виджет тест** тестирует один виджет. Цель такого теста — убедиться, что пользовательский интерфейс виджета выглядит
+  и взаимодействует, как запланировано. Тестирование виджета происходит в тестовой среде, которая обеспечивает контекст
+  жизненного цикла виджета. Также тестируемый виджет должен иметь возможность получать действия и события пользователя и
+  отвечать на них.
+- **Интеграционный тест** тестирует все приложение или его большую часть. Цель интеграционного теста — убедиться, что
+  все тестируемые виджеты и сервисы работают вместе, как ожидалось. Кроме того, вы можете использовать интеграционные
+  тесты для проверки производительности вашего приложения. Как правило, интеграционный тест выполняется на реальном
+  устройстве или эмуляторе.
 
-Парсинг пути и параметров запроса (например, "user/:id")
-Поддержка deep-links
-Поддержка перенаправления - вы можете перенаправить пользователя на другой URL-адрес в зависимости от состояния
-приложения
-Именованные роуты
-Auto Route
+### Что такое TDD?
 
-Парсинг пути и параметров запроса (например, "user/:id")
-Поддержка deep-links
-Защищённые маршруты
-Именованные роуты
-Разные варианты анимаций
-Базы данных
+**TDD** — это методика разработки приложений, где сначала пишется тест, покрывающий желаемое изменение, а затем — код,
+который позволит пройти тест.
 
-Нереляционные (NoSQL):
-Hive
+## Паттерны разработки
 
-Плюсы:
+1. **Порождающие**. Отвечают за удобное и безопасное создание новых объектов или даже целых семейств объектов.
 
-Реализация на чистом Dart, без платформенного кода, за счёт чего одинаково работает на разных платформах
-Прост в использовании
-Быстрая запись / чтение
-Мало boilerplate кода
-Наличие кодогенерации
-Поддерживается на всех платформах
-Минусы:
+    - **Factory Method (Фабричный Метод)**. Порождающий паттерн проектирования, который определяет общий интерфейс для
+      создания объектов в суперклассе, позволяя подклассам изменять тип создаваемых объектов.
+    - **Abstract Factory (Абстрактная Фабрика)**. Порождающий паттерн проектирования, который позволяет создавать
+      семейства
+      связанных объектов, не привязываясь к конкретным классам создаваемых объектов.
+    - **Builder (Строитель)**. Порождающий паттерн проектирования, который позволяет создавать сложные объекты пошагово.
+      Строитель даёт возможность использовать один и тот же код строительства для получения разных представлений
+      объектов.
+    - **Prototype (Прототип)**. Порождающий паттерн проектирования, который позволяет копировать объекты, не вдаваясь в
+      подробности их реализации.
+    - **Singleton (Одиночка)**. Порождающий паттерн проектирования, который гарантирует, что у класса есть только один
+      экземпляр, и предоставляет к нему глобальную точку доступа.
 
-Связи между объектами нужно поддерживать вручную
-Ограничение по количеству адаптеров для объектов - 224
-Ограничение по количеству полей в адаптере - 255
-Плохо подходит для работы с большим объемом данных
-Выгружает всю бд в память
-Нельзя получить доступ к box-у, созданному в другом изоляте
-Наличие кодогенерации
-Нет миграций
-Использование:
+2. **Структурные**. Отвечают за построение удобных в поддержке иерархий классов.
 
-Небольшой объём данных
-Необходимость в сохранении своих дата моделей
-Shared Preferences
+    - **Adapter (Адаптер)**. Структурный паттерн проектирования, который позволяет объектам с несовместимыми
+      интерфейсами работать вместе.
+    - **Bridge (Мост)**. Структурный паттерн проектирования, который разделяет один или несколько классов на две
+      отдельные иерархии — абстракцию и реализацию, позволяя изменять их независимо друг от друга.
+    - **Composite (Компоновщик)**. Структурный паттерн проектирования, который позволяет сгруппировать множество
+      объектов в древовидную структуру, а затем работать с ней так, как будто это единичный объект.
+    - **Decorator (Декоратор)**. Структурный паттерн проектирования, который позволяет динамически добавлять объектам
+      новую функциональность, оборачивая их в полезные «обёртки».
+    - **Facade (Фасад)**. Структурный паттерн проектирования, который предоставляет простой интерфейс к сложной системе
+      классов, библиотеке или фреймворку.
+    - **Flyweight (Легковес)**. Паттерн проектирования, который позволяет вместить бóльшее количество объектов в
+      отведённую оперативную память. Легковес экономит память, разделяя общее состояние объектов между собой, вместо
+      хранения одинаковых данных в каждом объекте.
+    - **Proxy (Заместитель)**. Структурный паттерн проектирования, который позволяет подставлять вместо реальных
+      объектов специальные объекты-заменители. Эти объекты перехватывают вызовы к оригинальному объекту, позволяя
+      сделать что-то до или после передачи вызова оригиналу.
 
-Плюсы:
+3. **Поведенческие**. Решают задачи эффективного и безопасного взаимодействия между объектами программы.
 
-Прост в использовании
-Синхронное чтение из кэша в памяти
-Поддерживается на всех платформах
-Минусы:
-
-Разные реализации для Android/iOS и других платформ
-Обращение к платформенному коду
-Не гарантируется запись на диск после успешного выполнения метода
-Нельзя сохранять сложные объекты из коробки
-Использование:
-
-Небольшой объём данных
-Необходимость в быстром внедрении решения
-Сохранение настроек приложения в виде примитивных данных
-Реляционные (SQL):
-SQFLite
-
-Плюсы
-
-Есть миграции
-Поддерживает связи между сущностями
-Не выгружает бд в оперативную память
-Возможность написания сложных запросов на SQL
-Минусы:
-
-Сложен в использовании
-Не поддерживается в Web, Linux, Windows
-Скорость работы ниже чем у NoSQL
-На разных OS и версиях могут быть разные версии SQLite
-Использование:
-
-Большой объём данных
-Хранение сложно структурированных данных
-Drift
-
-Есть миграции
-Поддерживает связи между сущностями
-Не выгружает бд в оперативную память
-Возможность написания сложных запросов на SQL
-Плюсы
-
-Есть миграции
-Быстрый
-Поддерживается на всех платформах
-Минусы:
-
-Сложен в использовании
-Скорость работы ниже чем у NoSQL
-Использование:
-
-Большой объём данных
-Хранение сложно структурированных данных
-Тестирование
-
-Виды тестов
-
-Модульный тест тестирует одну функцию, метод или класс. Его цель - проверить правильность работы определенной функции,
-метода или класса. Внешние зависимости для тестируемого модуля обычно передаются как параметр.
-Виджет тест тестирует один виджет. Цель такого теста — убедиться, что пользовательский интерфейс виджета выглядит и
-взаимодействует, как запланировано. Тестирование виджета происходит в тестовой среде, которая обеспечивает контекст
-жизненного цикла виджета. Также тестируемый виджет должен иметь возможность получать действия и события пользователя и
-отвечать на них .
-Интеграционный тест тестирует все приложение или его большую часть. Цель интеграционного теста — убедиться, что все
-тестируемые виджеты и сервисы работают вместе, как ожидалось. Кроме того, вы можете использовать интеграционные тесты
-для проверки производительности вашего приложения. Как правило, интеграционный тест выполняется на реальном устройстве
-или эмуляторе.
-TDD
-
-TDD — это методика разработки приложений, при которой сначала пишется тест, покрывающий желаемое изменение, а затем —
-код, который позволит пройти тест.
-
-Паттерны разработки
-
-Порождающие. Отвечают за удобное и безопасное создание новых объектов или даже целых семейств объектов.
-
-Factory Method (Фабричный Метод). Порождающий паттерн проектирования, который определяет общий интерфейс для создания
-объектов в суперклассе, позволяя подклассам изменять тип создаваемых объектов.
-Abstract Factory (Абстрактная Фабрика). Порождающий паттерн проектирования, который позволяет создавать семейства
-связанных объектов, не привязываясь к конкретным классам создаваемых объектов.
-Builder (Строитель). Порождающий паттерн проектирования, который позволяет создавать сложные объекты пошагово. Строитель
-даёт возможность использовать один и тот же код строительства для получения разных представлений объектов.
-Prototype (Прототип). Порождающий паттерн проектирования, который позволяет копировать объекты, не вдаваясь в
-подробности их реализации.
-Singleton (Одиночка). Порождающий паттерн проектирования, который гарантирует, что у класса есть только один экземпляр,
-и предоставляет к нему глобальную точку доступа.
-Структурные. Отвечают за построение удобных в поддержке иерархий классов.
-
-Adapter (Адаптер). Структурный паттерн проектирования, который позволяет объектам с несовместимыми интерфейсами работать
-вместе.
-Bridge (Мост). Структурный паттерн проектирования, который разделяет один или несколько классов на две отдельные
-иерархии — абстракцию и реализацию, позволяя изменять их независимо друг от друга.
-Composite (Компоновщик). Структурный паттерн проектирования, который позволяет сгруппировать множество объектов в
-древовидную структуру, а затем работать с ней так, как будто это единичный объект.
-Decorator (Декоратор). Структурный паттерн проектирования, который позволяет динамически добавлять объектам новую
-функциональность, оборачивая их в полезные «обёртки».
-Facade (Фасад). Структурный паттерн проектирования, который предоставляет простой интерфейс к сложной системе классов,
-библиотеке или фреймворку.
-Flyweight (Легковес). Паттерн проектирования, который позволяет вместить бóльшее количество объектов в отведённую
-оперативную память. Легковес экономит память, разделяя общее состояние объектов между собой, вместо хранения одинаковых
-данных в каждом объекте.
-Proxy (Заместитель). Структурный паттерн проектирования, который позволяет подставлять вместо реальных объектов
-специальные объекты-заменители. Эти объекты перехватывают вызовы к оригинальному объекту, позволяя сделать что-то до или
-после передачи вызова оригиналу.
-Поведенческие. Решают задачи эффективного и безопасного взаимодействия между объектами программы.
-
-Chain of Responsibility (Цепочка Обязанностей). Поведенческий паттерн проектирования, который позволяет передавать
-запросы последовательно по цепочке обработчиков. Каждый последующий обработчик решает, может ли он обработать запрос сам
-и стоит ли передавать запрос дальше по цепи.
-Command (Команда). Поведенческий паттерн проектирования, который превращает запросы в объекты, позволяя передавать их
-как аргументы при вызове методов, ставить запросы в очередь, логировать их, а также поддерживать отмену операций.
-Iterator (Итератор). Поведенческий паттерн проектирования, который даёт возможность последовательно обходить элементы
-составных объектов, не раскрывая их внутреннего представления.
-Mediator (Посредник). Поведенческий паттерн проектирования, который позволяет уменьшить связанность множества классов
-между собой, благодаря перемещению этих связей в один класс-посредник.
-Memento (Снимок). Поведенческий паттерн проектирования, который позволяет сохранять и восстанавливать прошлые состояния
-объектов, не раскрывая подробностей их реализации.
-Observer (Наблюдатель). Поведенческий паттерн проектирования, который создаёт механизм подписки, позволяющий одним
-объектам следить и реагировать на события, происходящие в других объектах.
-State (Состояние). Поведенческий паттерн проектирования, который позволяет объектам менять поведение в зависимости от
-своего состояния. Извне создаётся впечатление, что изменился класс объекта.
-Strategy (Стратегия). Поведенческий паттерн проектирования, который определяет семейство схожих алгоритмов и помещает
-каждый из них в собственный класс, после чего алгоритмы можно взаимозаменять прямо во время исполнения программы.
-Template Method (Шаблонный Метод). Поведенческий паттерн проектирования, который определяет скелет алгоритма,
-перекладывая ответственность за некоторые его шаги на подклассы. Паттерн позволяет подклассам переопределять шаги
-алгоритма, не меняя его общей структуры.
-Visitor (Посетитель). Поведенческий паттерн проектирования, который позволяет добавлять в программу новые операции, не
-изменяя классы объектов, над которыми эти операции могут выполняться.
+    - **Chain of Responsibility (Цепочка Обязанностей)**. Поведенческий паттерн проектирования, который позволяет
+      передавать запросы последовательно по цепочке обработчиков. Каждый последующий обработчик решает, может ли он
+      обработать запрос сам и стоит ли передавать запрос дальше по цепи.
+    - **Command (Команда)**. Поведенческий паттерн проектирования, который превращает запросы в объекты, позволяя
+      передавать их как аргументы при вызове методов, ставить запросы в очередь, логировать их, а также поддерживать
+      отмену операций.
+    - **Iterator (Итератор)**. Поведенческий паттерн проектирования, который даёт возможность последовательно обходить
+      элементы составных объектов, не раскрывая их внутреннего представления.
+    - **Mediator (Посредник)**. Поведенческий паттерн проектирования, который позволяет уменьшить связанность множества
+      классов между собой, благодаря перемещению этих связей в один класс-посредник.
+    - **Memento (Снимок)**. Поведенческий паттерн проектирования, который позволяет сохранять и восстанавливать прошлые
+      состояния объектов, не раскрывая подробностей их реализации.
+    - **Observer (Наблюдатель)**. Поведенческий паттерн проектирования, который создаёт механизм подписки, позволяющий
+      одним объектам следить и реагировать на события, происходящие в других объектах.
+    - **State (Состояние)**. Поведенческий паттерн проектирования, который позволяет объектам менять поведение в
+      зависимости от своего состояния. Извне создаётся впечатление, что изменился класс объекта.
+    - **Strategy (Стратегия)**. Поведенческий паттерн проектирования, который определяет семейство схожих алгоритмов и
+      помещает каждый из них в собственный класс, после чего алгоритмы можно взаимозаменять прямо во время исполнения
+      программы.
+    - **Template Method (Шаблонный Метод)**. Поведенческий паттерн проектирования, который определяет скелет алгоритма,
+      перекладывая ответственность за некоторые его шаги на подклассы. Паттерн позволяет подклассам переопределять шаги
+      алгоритма, не меняя его общей структуры.
+    - **Visitor (Посетитель)**. Поведенческий паттерн проектирования, который позволяет добавлять в программу новые
+      операции, не изменяя классы объектов, над которыми эти операции могут выполняться.
