@@ -425,6 +425,7 @@ Future имеет следующие типы конструкторов:
   другим потоком ресурса
 - **Live Lock** — поток захватывает ресурс, но после того, как убедится, что завершить работу не может, освобождает
   ресурс, аннулируя результаты
+-
 
 ## Общие вопросы по Flutter
 
@@ -455,469 +456,297 @@ Flutter может делать все, что может собственное
 создадите. Вы также можете наложить ограничения на приложение. Этот файл конфигурации проекта будет использоваться очень
 часто при работе с проектом Flutter. Эта спецификация написана на YAML, читаемом языке разметки.
 
+---
+
 ### Что будет если запустить несколько runApp()?
 
-6. Can you tell us how many kinds of widgets there are in Flutter?
-   There are two main types of widgets in Flutter. These include:
-
-StatelessWidget- It does not have any state information. It is static throughout its lifecycle. Examples are Row, Text,
-Column, and Container.
-
-StatefulWidget- It has state information. It contains two classes: the state object and the Widget. It is dynamic
-because it can change the inner data during the Widget's lifetime. Examples are Radio, Form, Checkbox, and TextField.
-
-8. runApp
-
-Explain the term “Tree shaking” in Flutter.
-Hide Answer
-Tree shaking is a method of removing the unused module in the bundle during the development process. Tree shaking serves
-as a sort of optimization technique that optimizes the code by removing the dead code.
-
-While importing or exporting codes, there might be dead codes hanging around. Removing these dead codes reduces the code
-size which in turn improves the performance of the application.
-
-10. What's the role of BuildContext in Flutter?
-    Hide Answer
-    In Flutter, the BuildContext is an object that provides access to the location of a widget in the widget tree
-    hierarchy and to various services such as Theme, MediaQuery, and Navigator. The BuildContext is used by widgets to
-    access the properties of their parent widget, such as its size, position, and theme. It is also used to navigate
-    between screens using the Navigator widget.
-
-11.
-
-What process will you use to reduce widget rebuild?
-On rebuilding, the state of the widget changes. This, however, helps the user to see the UI reflect state changes. At
-this point recreating sections of the user interface that do not need to be changed is unnecessary.
-
-To avoid the needless rebuilding of the widgets one can divide the widget tree into small individual widgets each having
-its own build process. Here const constructor can be used to inform Flutter that the dont need to be rebuilt.
-
-## INTERMEDIATE FLUTTER INTERVIEW QUESTIONS AND ANSWERS
-
-4.
-
-What do you mean by Container class?
-The container class is the convenience widget that enables positioning, sizing, and painting of widgets. A container
-class can include multiple widgets and it enables developers to manage those widgets according to their convenience.
-
-5. Can you name some popular database packages in Flutter?
-6. Can you tell us some differences between const and final in Flutter?
-   The only difference between const and final is that the const variables are evaluated at compile-time and are
-   immutable whereas final variables are evaluated at runtime and can only be set once.
-7. How would you optimize the performance of a Flutter app?
-   Some techniques to optimize the performance of a Flutter app include using the const keyword to make widgets
-   immutable, avoiding unnecessary widget rebuilds, using the Provider package for efficient state management, and
-   minimizing the number of expensive operations in the build method.
-   So, if your app is small, you can pass your data using the constructor of the widget class, but for a larger app,
-   this
-   is not an easy task. Unknowingly we use inherited widgets in many places while developing the flutter app.Theme.of(
-   context), Navigator.of(context), and MediQuery.of(context).
-8. Differentiate between setState and Provider?
-   The setState() is used for managing the local state. Calling the setState() function notifies the framework about the
-   change in the state of the object and that may affect the user interaction in the subtree.
-
-Whereas, provider is a state management technique in Flutter that allows widgets to access data from a central
-location (i.e., a "provider"). Providers can be used to manage the application state, such as user authentication or
-data fetched from an API.
-
-9.
-
-Can you state some difference between runApp() and main()?
-Main(): Main() function starts the program. You cannot write a program in Flutter without using the main() function
-whereas runApp() is used to launch the software. RunApp() allows you to return the widgets that are connected to the
-screen as the widget tree’s root.
-
-10. What’s the need of mixins?
-    Multiple inheritances are not supported in Dart. Hence, you would need mixins to use multiple inheritance in
-    Flutter, as
-    they allow you to write reusable class code in multiple class hierarchies.
-
-
-15. What is the difference between push and pushReplacement methods in Flutter?
-
-In Flutter, push and pushReplacement are two methods that are used to navigate between different screens in an app. Both
-methods are available on the Navigator class, which manages the navigation stack in a Flutter app.
-
-The push method is used to push a new route onto the navigation stack, which adds a new screen to the app’s UI. This
-method does not remove the previous screen from the stack, which means that the user can use the back button or swipe
-gesture to navigate back to the previous screen.
-The pushReplacement method is similar to the push method, but it replaces the current screen on the navigation stack
-with a new screen. This means that the previous screen is removed from the stack and cannot be navigated back to using
-the back button or swipe gesture.
-So, the main difference between push and pushReplacement methods is that push adds a new screen to the navigation stack
-while pushReplacement replaces the current screen with a new screen.
-
-18. Access modifiers in Dart
-    Dart offers a set of access modifiers to control the visibility of members: public (default, if no modifier is
-    specified), private (indicated by a leading underscore _), and protected (not explicitly available but achieved
-    through conventions). Dart's approach to privacy is library-based, meaning that private members are hidden within
-    the same library file but can be accessed across classes within that file.
-
-19. Difference between Named Construction and Factory
-    In Dart, a named constructor allows a class to define multiple ways to initialize, using different names for
-    clarity. It directly creates a new instance of the class. On the other hand, a factory is a special kind of
-    constructor that doesn't always return a new instance. Instead, it can return an existing instance, an instance of a
-    subtype, or even an instance of a completely different class. While named constructors offer varied initialization
-    methods, factories provide greater control over the object creation process.
-
-23. cascade and spread operators
-    The cascade operator (..) allows for performing a series of operations on a single object without breaking the
-    chain. For instance:
-    var obj = Object()..method1()..method2();
-    The spread operator (...) is used to insert multiple elements from one collection into another. It's especially
-    useful when constructing lists or other collections:
-    var list = [1, 2, ...otherList, 3];
-28. State Managers
-    In Flutter, state management refers to the way developers handle the data used by the app to influence its behavior
-    and appearance. It's about maintaining and manipulating the state, or data, of a widget, and determining how the
-    changes in state reflect in the UI.
-    InheritedWidget is a foundational class in Flutter, which is particularly useful for small to medium-sized projects.
-    It simplifies the transfer of data down the widget tree, eliminating the need for numerous constructor arguments,
-    making the code cleaner and more manageable.
-    The Provider Package built atop InheritedWidget, is suitable for medium to large-sized projects, offering a range of
-    features for handling state, including dependency injection, and it encapsulates common patterns of using
-    InheritedWidget, making it more user-friendly.
-    Bloc Pattern is ideal for managing the state in large, complex projects. It promotes a clear separation between the
-    user interface and business logic, making the components of the application easier to debug and test.
-    The Redux Pattern, originally developed for JavaScript applications, maintains all the application’s state
-    information in a single entity called the store. It provides a single source of truth, making it easier to
-    conceptualize the state of the application, but might be overkill for simpler state needs.
-    MobX is another approach, best suited for developers who prefer working with reactive programming paradigms. It
-    provides a reactive state that automatically updates the UI when the state changes, making state management seamless
-    and efficient.
-    The choice of approach should align with the project’s complexity and specific requirements, ensuring smooth
-    development and optimal app performance.
-29. Bloc vs Cubit
-    In Flutter, Bloc and Cubit are distinct state management solutions with unique mechanisms, catering to different
-    levels of complexity.
-    Bloc, ideal for more complex scenarios, employs a reactive programming model, using streams and requiring the
-    definition of events and states to manage state transitions meticulously. It’s particularly useful when multiple
-    states and transitions are involved, necessitating a detailed and structured approach.
-    On the other hand, Cubit is simpler and more direct, eliminating the need for event definitions and allowing state
-    changes through simple function calls. This makes Cubit suitable for situations where simplicity and rapid
-    development are crucial.
-    In essence, while Bloc offers structured solutions for intricate scenarios, Cubit is optimal for simpler, more
-    straightforward state management needs.
+Повторный вызов runApp отсоединит предыдущий корневой виджет от представления и прикрепит данный виджет на его место.
+Новое дерево виджетов сравнивается с предыдущим деревом виджетов, и любые различия применяются к базовому дереву
+рендеринга, аналогично тому, что происходит, когда StatefulWidget восстанавливается после вызова State.setState.
 
 ---
 
+### Жизненный цикл Stateful виджета
 
-
----
-Жизненный цикл Stateful виджета
-
-createState() вызывается единожды и создает изменяемое состояние для этого виджета в заданном месте в дереве
-mounted is true
-initState() вызывается единожды при инициализации
-didChangeDependencies() вызывается единожды после инициализации и далее при уведомлениях от Inhherited-виджетов вверху
-по дереву, от которых зависит виджет
-build() вызывается каждый раз при перерисовке
-didUpdateWidget(Widget oldWidget) вызывается каждый раз при обновлении конфигурации виджета
-setState() вызывается императивно для перерисовки
-deactivate() вызывается, когда ранее активный элемент перемещается в список неактивных элементов, при этом удаляясь из
-дерева
-dispose() вызывается, когда этот объект удаляется из дерева навсегда
-mounted is false
+- `createState()` вызывается единожды и создает изменяемое состояние для этого виджета в заданном месте в дереве
+- mounted is true
+- `initState()` вызывается единожды при инициализации
+- `didChangeDependencies()` вызывается единожды после инициализации и далее при уведомлениях от Inhherited-виджетов
+  вверху по дереву, от которых зависит виджет
+- `build()` вызывается каждый раз при перерисовке
+- `didUpdateWidget(Widget oldWidget)` вызывается каждый раз при обновлении конфигурации виджета
+- `setState()` вызывается императивно для перерисовки
+- `deactivate()` вызывается, когда ранее активный элемент перемещается в список неактивных элементов, при этом удаляясь
+  из дерева
+- `dispose()` вызывается, когда этот объект удаляется из дерева навсегда
+- `mounted` is false
 
 ---
-Деревья виджетов
+
+### Что такое BuildContext?
+
+`BuildContext` - это интерфейс, который имплементирует Element. BuildContext может быть полезен, когда нужно:
+
+1. Получить ссылку на объект `RenderObject`, соответствующий виджету (или, если виджет не является Renderer, то
+   виджету-потомку)
+2. Получить размер `RenderObject`
+3. Обратиться к дереву и получить ближайший родительский InheritedWidget. Это используется фактически всеми виджетами,
+   которые обычно реализуют метод of (например, `MediaQuery.of(context)`, `Theme.of(context)` и т.д.)
+
+### Что такое InheritedWidget?
+
+`InheritedWidget` — это виджет, который предоставляет своим потомкам возможность взаимодействовать с данными,
+хранящимися в нём. Решает проблему с передачей данных через конструкторы. Может уведомлять виджетов внизу по дереву об
+изменениях в собственных данных, тем самым провоцируя их перерисовку.
+Для получения `Inherited` виджета необходимо вызвать
+`context.dependOnInheritedWidgetOfExactType<T extends InheritedWidget>()` в `didChangeDependencies()`
+
+Сложность у операции получения `InheritedWidget` - `O(1)`. Такая скорость достигается за счёт того, что `Inherited`
+виджеты хранятся в виде хэш-таблицы в `Element-е`.
+
+### Что такое деревья виджетов?
 
 ![Widget Tree](images/widget_tree.png)
-Widget Tree состоит из Widget, которые используются для описания пользовательского интерфейса
+`Widget Tree` состоит из Widget, которые используются для описания пользовательского интерфейса
 Element Tree состоит из Element, которые управляют жизненым циклом виджета и связывают виджеты и объекты рендеринга.
 Render Tree состоит из RenderObject, которые используются для определения размеров, положения, геометрии, определения
 зон экрана, на которые могут повлиять жесты
 
-Widget
+### Что такое Widget?
 
-Widget - это иммутабельное описание части пользовательского интерфейса. Виджет связан с элементом, который управляет
+`Widget` - это иммутабельное описание части пользовательского интерфейса. Виджет связан с элементом, который управляет
 рендерингом. Виджеты образуют сруктуру, а не дерево
 
-Element
+### Что такое Element?
 
-Element - это мутабельное представление виджета в определенном месте дерева. Управляют жизненым циклом, связывают
+`Element` - это мутабельное представление виджета в определенном месте дерева. Управляют жизненым циклом, связывают
 виджеты и объекты рендеринга.
 
-RenderObject
+### Что такое RenderObject?
 
-RenderObject - это мутабельный объект дерева визуализации. У него есть родительский объект, а также поле с данными,
+`RenderObject` - это мутабельный объект дерева визуализации. У него есть родительский объект, а также поле с данными,
 которое родительский объект использует для хранения специфичной информации, касающейся самого этого объекта, например,
 его позицию. Данный объект отвечает за отрисовку, учёт размеров и ограничений, прослушивание и обработку нажатий. При
-необходимости перерисовки помечается как dirty. Перерисовывается, используя свой метод layer
+необходимости перерисовки помечается как `dirty`. Перерисовывается, используя свой метод `layer`
 
-Виды виджетов
+### Виды виджетов
 
-Proxy - это виджеты, которые хранят некоторую информацию и делают её доступной для потомков. Эти виджеты не принимают
-непосредственного участия в формировании пользовательского интерфейса, но используются для получения информации, которую
-они могут предоставить.
+- `Proxy` - это виджеты, которые хранят некоторую информацию и делают её доступной для потомков. Эти виджеты не
+  принимают непосредственного участия в формировании пользовательского интерфейса, но используются для получения
+  информации, которую они могут предоставить.
+- `Renderer` - это виджеты, которые имеют непосредственное отношение к компоновке экрана, поскольку они определяют
+  размеры, положение, отрисовку
+- `Component` - это виджеты, которые предоставляют непосредственно не окончательную информацию, связанную с размерами,
+  позициями, внешним видом, а скорее данные (или подсказки), будут использоваться для получения той самой
+  финальной информации
 
-InheritedWidget
-ParentDataWidget (LayoutId, Flexible, KeepAlive и т.д.)
-NotificationListener
-Renderer - это виджеты, которые имеют непосредственное отношение к компоновке экрана, поскольку они определяют размеры,
-положение, отрисовку
-
-Row
-Column
-Stack
-Padding
-Align
-Opacity
-Component - это виджеты, которые предоставляют непосредственно не окончательную информацию, связанную с размерами,
-позициями, внешним видом, а скорее данные (или подсказки), которые будут использоваться для получения той самой
-финальной информации
-
-RaisedButton
-Scaffold
-Text
-GestureDetector
-Container
-Виды элементов
+# Какие бывают виды элементов?
 
 ![Element Tree](images/element_tree.png)
-ComponentElement - компоновочный элемент, который явно не содержит логику рисования/отображения. Есть метод build(),
-который возвращает виджет. Образуется только при создании виджетов StatelessWidget, StatefulWidget, InheritedWidget.
 
-ProxyElement
-StatelessElement
-StatefulElement
-RenderObjectElement - отображающий элемент, явно участвующий в рисовании компонентов на экране. Содержит renderObject и
-наследуется от класса Element. Образуется при создании виджетов Padding, Column, Row, Center и др.
+- `ComponentElement` - компоновочный элемент, который явно не содержит логику рисования/отображения. Есть метод build(),
+  который возвращает виджет. Образуется только при создании виджетов `StatelessWidget`, `StatefulWidget`,
+  `InheritedWidget`.
 
-LeafRenderObjectElement
-ListWheelElement
-MultiChildRenderObjectElement
-RootRenderObjectElement
-SingleChildRenderObjectElement
-SliverMultiBoxAdaptorElement
-SlottedRenderObjectElement
-Жизненный цикл Element-а
+- `RenderObjectElement` - отображающий элемент, явно участвующий в рисовании компонентов на экране. Содержит
+  `renderObject` и наследуется от класса `Element`. Образуется при создании виджетов `Padding`, `Column`, `Row`,
+  `Center` и др.
 
-Элемент создаётся посредством вызова метода Widget.createElement и конфигурируется экземпляром виджета, у которого был
-вызван метод.
-С помощью метода mount созданный элемент добавляется в заданную позицию родительского элемента. При вызове данного
-метода также ассоциируются дочерние виджеты и элементам сопоставляются объекты дерева рендеринга.
-Виджет становится активным и должен появиться на экране.
-В случае изменения виджета, связанного с элементом (например, если родительский элемент изменился), есть несколько
-вариантов развития событий. Если новый виджет имеет такой же runtimeType и key, то элемент связывается с ним. В
-противном случае, текущий элемент удаляется из дерева, а для нового виджета создаётся и ассоциируется с ним новый
-элемент.
-В случае, если родительский элемент решит удалить дочерний элемент, или промежуточный между ними, это приведет к
-удалению объекта рендеринга и переместит данный элемент в список неактивных, что приведет к деактивации элемента.
-Когда элемент считается неактивным, он не находится на экране. Элемент может находиться в неактивном состоянии только до
-конца текущего фрейма, если за это время он остается неактивным, он демонтируется, после этого считается несуществующим
-и больше не будет включен в дерево.
-При повторном включении в дерево элементов, например, если элемент или его предки имеют глобальный ключ, он будет удален
-из списка неактивных элементов, будет вызван метод activate, и рендер объект, сопоставленный данному элементу, снова
-будет встроен в дерево рендеринга. Это означает, что элемент должен снова появиться на экране.
+### Жизненный цикл Element-а
 
-Флаттер под капотом
+- Элемент создаётся посредством вызова метода `Widget.createElement` и конфигурируется экземпляром виджета, у которого
+  был вызван метод.
+- С помощью метода mount созданный элемент добавляется в заданную позицию родительского элемента. При вызове данного
+  метода также ассоциируются дочерние виджеты и элементам сопоставляются объекты дерева рендеринга.
+- Виджет становится активным и должен появиться на экране.
+- В случае изменения виджета, связанного с элементом (например, если родительский элемент изменился), есть несколько
+  вариантов развития событий. Если новый виджет имеет такой же `runtimeType` и `key`, то элемент связывается с ним. В
+  противном случае, текущий элемент удаляется из дерева, а для нового виджета создаётся и ассоциируется с ним новый
+  элемент.
+- В случае, если родительский элемент решит удалить дочерний элемент, или промежуточный между ними, это приведет к
+  удалению объекта рендеринга и переместит данный элемент в список неактивных, что приведет к деактивации элемента.
+- Когда элемент считается неактивным, он не находится на экране. Элемент может находиться в неактивном состоянии только
+  до конца текущего фрейма, если за это время он остается неактивным, он демонтируется, после этого считается
+  несуществующим и больше не будет включен в дерево.
+- При повторном включении в дерево элементов, например, если элемент или его предки имеют глобальный ключ, он будет
+  удален из списка неактивных элементов, будет вызван метод activate, и рендер объект, сопоставленный данному элементу,
+  снова будет встроен в дерево рендеринга. Это означает, что элемент должен снова появиться на экране.
+
+### Что такое ключи и зачем они нужны?
+
+`Ключи` - это специальные объекты, которые используются для идентификации виджетов в дереве виджетов. Есть два основных
+типа ключей:
+
+- `GlobalKeys` - это ключи, которые предоставляют доступ к виджетам. Для виджетов с отслеживанием состояния глобальные
+  ключи также предоставляют доступ к состоянию. Позволяют виджетам менять родителей в любом месте приложения без потери
+  состояния. Должны быть уникальны для всего приложения.
+
+- `LocalKeys` - это ключи, которые нужны для идентификации виджетов в коллекции с одинаковыми значениеми должны быть
+  уникальными среди виджетов с одним и тем же родительским виджетом. Могут использоваться для тестов:
+
+1. `ValueKey` - это ключ, который использует значение определенного типа для идентификации самого себя. Переопределяет
+   оператор сравнения. Если value одниковое, то ключи одинаковые
+2. `UniqueKey` - это ключ, который равен только самому себе
+3. `ObjectKey` - это ключ, который используется для привязки идентификатора виджета к идентификатору объекта,
+   используемого для создания этого виджета
+
+### Как устроен Flutter под капотом?
+
 ![Flutter](images/flutter_structure.png)
-Уровень фреймворка — всё, с чем мы работаем в момент написания приложения, и все служебные классы, позволяющие
-взаимодействовать написанному нами с уровнем движка. Всё, относящееся к данному уровню написано на Dart. Flutter
-Framework взаимодействует с Flutter Engine через слой абстракции, называемый Window
+`Уровень фреймворка` — всё, с чем мы работаем в момент написания приложения, и все служебные классы, позволяющие
+взаимодействовать написанному нами с уровнем движка. Всё, относящееся к данному уровню написано на `Dart`. `Flutter
+Framework` взаимодействует с `Flutter Engine` через слой абстракции, называемый `Window`
 
-Уровень движка — более низкий уровень, чем уровень фреймворка, содержит классы и библиотеки, позволяющие работать уровню
-фреймворка. В том числе виртуальная машина Dart, Skia и тд.
+`Уровень движка` — более низкий уровень, чем уровень фреймворка, содержит классы и библиотеки, позволяющие работать
+уровню
+фреймворка. В том числе виртуальная машина `Dart`, `Skia` и тд.
 
-Уровень платформы — специфичные механизмы, относящиеся к конкретной платформе запуска.
+`Уровень платформы` — специфичные механизмы, относящиеся к конкретной платформе запуска.
 
-Flutter Engine уведомляет Flutter Framework, когда:
+`Flutter Engine` уведомляет `Flutter Framework`, когда:
 
-Событие, представляющее интерес, происходит на уровне устройства (изменение ориентации, изменение настроек, проблема с
-памятью, состояние работы приложения…)
-Какое-то событие происходит на уровне стекла (жест)
-Канал платформы отправляет некоторые данные
-Но также и в основном, когда Flutter Engine готов к рендерингу нового кадра
-Модель выполнения во Flutter
+- Событие, представляющее интерес, происходит на уровне устройства (изменение ориентации, изменение настроек, проблема с
+  памятью, состояние работы приложения…)
+- Какое-то событие происходит на уровне стекла (жест)
+- Канал платформы отправляет некоторые данные
+- Но также и в основном, когда `Flutter Engine` готов к рендерингу нового кадра
 
-Создается и запускается новый процесс — Thread (Isolate). Это единственный процесс, в котором будет выполняться ваше
-приложение.
-Инициализируются две очереди с MicroTask и Event, тип очередей FIFO (прим.: first in first out, т.е. сообщение,
-пришедшие раньше, будут раньше обработаны)
-Исполняется функция main()
-Запускается Event Loop. Он управлет порядком исполнения вашего кода, в зависимости от содержимого двух очередей:
-MicroTask и Event. Представляет собой "бесконечный" цикл.
-Event Loop с определённой частотой проверяет MicroTask и Event. Если есть что-то в MicroTask, то оно выполняется перед
-очередью Event.
+### Как выглядит модель выполнения во Flutter?
 
-WidgetsFlutterBinding
+1. Создается и запускается новый процесс — `Thread (Isolate)`. Это единственный процесс, в котором будет выполняться
+   ваше приложение.
+2. Инициализируются две очереди с `MicroTask` и `Event`, тип очередей `FIFO` (прим.: first in first out, т.е. сообщение,
+   пришедшие раньше, будут раньше обработаны)
+3. Исполняется функция `main()`
+4. Запускается `Event Loop`. Он управлет порядком исполнения вашего кода, в зависимости от содержимого двух очередей:
+   `MicroTask` и `Event`. Представляет собой "бесконечный" цикл.
+5. `Event Loop` с определённой частотой проверяет `MicroTask` и `Event`. Если есть что-то в `MicroTask`, то оно
+   выполняется перед очередью `Event`.
 
-WidgetsFlutterBinding — конкретная реализация привязки приложений на основе инфраструктуры виджетов. По сути своей — это
-клей, соединяющий фреймворк и движок Flutter. WidgetsFlutterBinding состоит из множества связей: GestureBinding,
-ServicesBinding, SchedulerBinding, PaintingBinding, SemanticsBinding, RendererBinding, WidgetsBinding.
+### Что такое WidgetsFlutterBinding?
 
-Метод scheduleAttachRootWidget является отложенной реализацией attachRootWidget. Принадлежит данный метод
-WidgetsBinding. В описании к нему сказано, что он присоединяет переданный виджет к renderViewElement — корневому
+`WidgetsFlutterBinding` — конкретная реализация привязки приложений на основе инфраструктуры виджетов. По сути своей —
+это
+клей, соединяющий фреймворк и движок `Flutter`. `WidgetsFlutterBinding` состоит из множества связей: `GestureBinding`,
+`ServicesBinding`, `SchedulerBinding`, `PaintingBinding`, `SemanticsBinding`, `RendererBinding`, `WidgetsBinding`.
+
+Метод `scheduleAttachRootWidget` является отложенной реализацией `attachRootWidget`. Принадлежит данный метод
+`WidgetsBinding`. В описании к нему сказано, что он присоединяет переданный виджет к `renderViewElement` — корневому
 элементу дерева элементов.
 
-Метод scheduleWarmUpFrame принадлежит SchedulerBinding и используется для того, чтобы запланировать запуск кадра как
-можно скорее, не ожидая системного сигнала Vsync.
+Метод `scheduleWarmUpFrame` принадлежит `SchedulerBinding` и используется для того, чтобы запланировать запуск кадра как
+можно скорее, не ожидая системного сигнала `Vsync`.
 
-Bindings
+### Что такое Bindings?
 
 ![Bindings](images/binding.png)
 
-Bindings - это классы для обмена данными между Flutter Framework и Flutter Engine. Каждая привязка отвечает за обработку
-набора конкретных задач, действий, событий, сгруппированных по области деятельности.
+`Bindings` - это классы для обмена данными между `Flutter Framework` и `Flutter Engine`. Каждая привязка отвечает за
+обработку набора конкретных задач, действий, событий, сгруппированных по области деятельности.
 
-BaseBinding — базовый абстрактный класс, давайте тогда рассмотрим конкретные реализации биндингов. Среди них мы увидим:
+`BaseBinding` — базовый абстрактный класс, давайте тогда рассмотрим конкретные реализации биндингов. Среди них мы
+увидим:
 
-ServicesBinding отвечает за перенаправление сообщений от текущей платформы в обработчик данных сообщений (
-BinaryMessenger);
+1. `ServicesBinding` отвечает за перенаправление сообщений от текущей платформы к обработчику данных сообщений (
+   `BinaryMessenger`);
+2. `PaintingBinding` отвечает за связь с библиотекой отрисовки.
+3. `RenderBinding` отвечает за связь между деревом рендеринга и движком `Flutter`.
+4. `WidgetBinding` отвечает за связь между деревом виджетов и движком `Flutter`.
+5. `SchedulerBinding` — планировщик очередных задач, таких как:
+    - вызовы приходящих колбеков, которые инициирует система в `Window.onBeginFrame` — например события тикеров и
+      контроллеров анимаций;
+    - вызовы непрерывных колбеков, которые инициирует система `Window.onDrawFrame`, например, события для обновления
+      системы отображения после того, как отработают приходящие колбеки;
+    - посткадровые колбеки, которые вызываются после непрерывных колбеков, перед возвратом из `Window.onDrawFrame`;
+    - задачи не связанные с рендерингом, которые должны быть выполнены между кадрами.
+6. `SemanticsBinding` отвечает за связь слоя семантики и движком `Flutter`.
+7. `GestureBinding` отвечает за работу с подсистемой жестов.
 
-PaintingBinding отвечает за связь с библиотекой отрисовки.
-
-RenderBinding отвечает за связь между деревом рендеринга и движком Flutter.
-
-WidgetBinding отвечает за связь между деревом виджетов и движком Flutter.
-
-SchedulerBinding — планировщик очередных задач, таких как:
-
-вызовы приходящих колбеков, которые инициирует система в Window.onBeginFrame — например события тикеров и контроллеров
-анимаций;
-вызовы непрерывных колбеков, которые инициирует система Window.onDrawFrame, например, события для обновления системы
-отображения после того, как отработают приходящие колбеки;
-посткадровые колбеки, которые вызываются после непрерывных колбеков, перед возвратом из Window.onDrawFrame;
-задачи не связанные с рендерингом, которые должны быть выполнены между кадрами.
-SemanticsBinding отвечает за связь слоя семантики и движком Flutter.
-
-GestureBinding отвечает за работу с подсистемой жестов.
-
-Каналы платформы
+### Что такое каналы платформы?
 
 ![Platform Channels](images/platfrom_channel.png)
 
 (!) Платформенные взаимодействия возможны только в главном изоляте. Этот тот изолят, который создается при запуске
 вашего приложения.
 
-Канал платформы — это двусторонний канал связи между кодом на dart и нативом, который объединяет имя канала и кодек для
+`Канал платформы` — это двусторонний канал связи между кодом на dart и нативом, который объединяет имя канала и кодек
+для
 кодирования сообщений в двоичную форму и обратно. Вызовы асинхронны. Каждый канал должен иметь уникальный идентификатор.
 
-Каналы сообщений - это каналы платформы, предназначенные для обмена сообщениями между нативным кодом и
+`Каналы сообщений` - это каналы платформы, предназначенные для обмена сообщениями между нативным кодом и
 flutter-приложением.
-Кодеки сообщений:
+`Кодеки сообщений`:
 
-BinaryCodec Реализуя сопоставление идентификаторов в байтовых буферах, этот кодек позволяет вам наслаждаться удобством
-объектов канала в тех случаях, когда вам не требуется кодирование/декодирование. Каналы сообщений Dart с этим кодеком
-имеют тип BasicMessageChannel.
-JSONMessageCodec Работает с «JSON-подобными» значениями (строки, числа, логические значения, null, списки этих значений
-и мапы строка-ключ с этими данными). Списки и мапы неоднородны и могут быть вложены друг в друга. Во время кодирования
-значения преобразуются в строки JSON, а затем в байты с использованием UTF-8. Каналы сообщений Dart имеют тип
-BasicMessageChannel с этим кодеком.
-StandardMessageCodec Работает с несколько более обобщенными значениями, чем кодек JSON, поддерживая также однородные
-буферы данных (UInt8List, Int32List, Int64List, Float64List) и мапы с нестроковыми ключами. Обработка чисел отличается
-от JSON тем, что целые числа Dart поступают на платформу как 32- или 64-битные целые числа со знаком, в зависимости от
-величины никогда как числа с плавающей запятой. Значения кодируются в специальном, достаточно компактном и расширяемом
-двоичном формате. Стандартный кодек предназначен для выбора по умолчанию для канала связи во Flutter. Что касается JSON,
-каналы сообщений Dart, созданные с использованием стандартного кодека, имеют тип BasicMessageChannel.
-Каналы методов — это каналы платформы, предназначенные для вызова нативного кода из flutter-приложения.
-Кодеки методов:
+- `BinaryCodec`. Реализуя сопоставление идентификаторов в байтовых буферах, этот кодек позволяет вам наслаждаться
+  удобством объектов канала в тех случаях, когда вам не требуется кодирование/декодирование. Каналы сообщений Dart с
+  этим кодеком имеют тип `BasicMessageChannel`.
+- `JSONMessageCodec` Работает с «JSON-подобными» значениями (строки, числа, логические значения, null, списки этих
+  значений и мапы строка-ключ с этими данными). Списки и мапы неоднородны и могут быть вложены друг в друга. Во время
+  кодирования значения преобразуются в строки `JSON`, а затем в байты с использованием `UTF-8`. Каналы сообщений `Dart`
+  имеют тип `BasicMessageChannel` с этим кодеком.
+- `StandardMessageCodec` Работает с несколько более обобщенными значениями, чем кодек JSON, поддерживая также однородные
+  буферы данных (`UInt8List`, `Int32List`, `Int64List`, `Float64List`) и мапы с нестроковыми ключами. Обработка чисел
+  отличается от `JSON` тем, что целые числа Dart поступают на платформу как 32- или 64-битные целые числа со знаком, в
+  зависимости от величины никогда как числа с плавающей запятой. Значения кодируются в специальном, достаточно
+  компактном и расширяемом двоичном формате. Стандартный кодек предназначен для выбора по умолчанию для канала связи во
+  `Flutter`. Что касается `JSON`, каналы сообщений `Dart`, созданные с использованием стандартного кодека, имеют тип
+  `BasicMessageChannel`.
+  `Каналы методов` — это каналы платформы, предназначенные для вызова нативного кода из flutter-приложения.
+  `Кодеки методов`:
+- `StandardMethodCodec` делегирует кодирование значений полезной нагрузки (payload) в `StandardMessageCodec`. Поскольку
+  последний является расширяемым, то же самое можно сказать и о первом.
+  `JSONMethodCodec` делегирует кодирование значений полезной нагрузки (payload) в `JSONMessageCodec`.
+  `Каналы событий` — это специализированные каналы платформы, предназначенные для использования в случае представления
+  событий платформы Flutter в виде потока Dart. Работает как обычный `Stream`
 
-StandardMethodCodec делегирует кодирование значений полезной нагрузки (payload) в StandardMessageCodec. Поскольку
-последний является расширяемым, то же самое можно сказать и о первом.
-JSONMethodCodec делегирует кодирование значений полезной нагрузки (payload) в JSONMessageCodec.
-Каналы событий — это специализированные каналы платформы, предназначенные для использования в случае представления
-событий платформы Flutter в виде потока Dart. Работает как обычный Stream
+### Как происходит расчет макета?
 
-## Анимации в Flutter
+1. Ограничения спускаются по дереву, от родителей к детям.
+2. Размеры идут вверх по дереву от детей к родителям.
+3. Родители устанавливают положение детей.
 
-Этапы анимации
+### Что такое BuildOwner и какие методы он имеет?
 
-Ticker просит SchedulerBinding зарегистрировать обратный вызов и сообщить Flutter Engine, что надо разбудить его, когда
-появится новый обратный вызов.
-Когда Flutter Engine готов, он вызывает SchedulerBinding через запрос onBeginFrame.
-SchedulerBinding обращается к списку обратных вызовов ticker и выполняет каждый из них.
-Каждый tick перехватывается "заинтересованным" контроллером для его обработки.
-Если анимация завершена, то ticker "отключён", иначе ticker запрашивает SchedulerBinding для планирования нового
-обратного вызова.
-...
-Виды анимаций
-
-Tween animation. Начало, конец, время, скорость заранее определенно
-Physics-based animation. Имитируют реальное поведение
-Что такое Tween
-
-Tween - это объект, который описывает между какими значениями анимируется виджет и отвечает за вычисление текущего
-значения анимации
-
-Tween анимации
-
-Implicit Animations - это набор Implicitly Animated Widgets, которые анимируются самостоятельно при их перестройке с
-новыми аргументами. (AnimatedAlign, AnimatedContainer, AnimatedPadding и т.д.)
-Explicit Animations - это набор элементов управления анимационными эффектами. Предоставляют куда больше контроля над
-анимацией, чем Implicit Animations. Для использования необходимо подмешать к стейту вашего виджета
-SingleTickerProviderStateMixin / TickerProviderStateMixin, создать AnimationController и зависящие от него Animation,
-передать анимацию в Transition Widget (AlignTransition, DecoratedBoxTransition, SizeTransition и т.д.)
-SingleTickerProviderStateMixin / TickerProviderStateMixin создает Ticker
-Ticker вызывает callback на каждый фрейм анимации
-AnimationController пределяет все фреймы анимации - управляет анимацией (forward, reverse, repeat, stop, reset и т.д.)
-Animation отдает текущее значение анимации, а также позволяет подписаться на обновления значения/статуса анимации
-Построение кадра
-
-Некоторые внешние события приводят к необходимости обновления отображения.
-Schedule Frame отправляется к Flutter Engine
-Когда Flutter Engine готов приступить к обновлению рендеринга, он создает Begin Frame запрос
-Этот Begin Frame запрос перехватывается Flutter Framework, который выполняет задачи, связанные в основном с Tickers (
-например, анимацию)
-Эти задачи могут повторно создать запрос для более поздней отрисовки (пример: анимация не закончила своё выполнение, и
-для завершения ей потребуется получить еще один Begin Frame на более позднем этапе)
-Далее Flutter Engine отправляет Draw Frame, который перехватывается Flutter Framework, который будет искать любые
-задачи, связанные с обновлением макета с точки зрения структуры и размера
-После того, как все эти задачи выполнены, он переходит к задачам, связанным с обновлением макета с точки зрения
-отрисовки
-Если на экране есть что-то, что нужно нарисовать, то новая сцена для визуализации отправляется в Flutter Engine, который
-обновит экран
-Затем Flutter Framework выполняет все задачи, которые будут выполняться после завершения рендеринга (PostFrame
-callbacks), и любые другие последующие задачи, не связанные с рендерингом
-…
-
-Расчёт макета
-
-Ограничения спускаются вниз по дереву, от родителей к детям.
-Размеры идут вверх по дереву от детей к родителям.
-Родители устанавливают положение детей.
-BuildOwner
-
-BuildOwner — менеджер сборки и обновления дерева элементов. Он активно участвует в двух фазах — сборки и завершения
-сборки. Поскольку BuildOwner управляет процессом сборки дерева, в нем хранятся списки неактивных элементов и списки
+**BuildOwner** — менеджер сборки и обновления дерева элементов. Он активно участвует в двух фазах — сборки и завершения
+сборки. Поскольку `BuildOwner` управляет процессом сборки дерева, в нем хранятся списки неактивных элементов и списки
 элементов, нуждающихся в обновлении.
-Методы:
 
-scheduleBuildFor даёт возможность пометить элемент как нуждающийся в обновлении.
-lockState защищает элемент от неправильного использования, утечек памяти и пометки на обновления в процессе уничтожения.
-buildScope осуществляет пересборку дерева. Работает с элементами, которые помечены как нуждающиеся в обновлении.
-finalizeTree завершает построение дерева. Удаляет неиспользуемые элементы и осуществляет дополнительные проверки в
-режиме отладки — в том числе на дублирование глобальных ключей.
-reassemble обеспечивает работу механизма HotReload. Этот механизм позволяет не пересобирать проект при изменениях, а
-отправлять новую версию кода на DartVM и инициировать обновление дерева.
-PipelineOwner
+- `scheduleBuildFor` даёт возможность пометить элемент как нуждающийся в обновлении.
+- `lockState` защищает элемент от неправильного использования, утечек памяти и пометки на обновления в процессе
+  уничтожения.
+- `buildScope` осуществляет пересборку дерева. Работает с элементами, которые помечены как нуждающиеся в обновлении.
+- `finalizeTree` завершает построение дерева. Удаляет неиспользуемые элементы и осуществляет дополнительные проверки в
+  режиме отладки — в том числе на дублирование глобальных ключей.
+- `reassemble` обеспечивает работу механизма HotReload. Этот механизм позволяет не пересобирать проект при изменениях, а
+  отправлять новую версию кода на DartVM и инициировать обновление дерева.
 
-PipelineOwner — менеджер сборки, который занимается работой с деревом отображения.
+### Что такое PipelineOwner?
 
-Garbage Collector
+**PipelineOwner** — менеджер сборки, который занимается работой с деревом отображения.
 
-Garbage Collector - это алгоритм, наблюдает за ссылками и очищает память с целью предотвращения её переполнения.
+### Что такое Garbage Collector?
 
-(!) В процессе сборки мусора слой Dart Framework создает канал взаимодействия со слоем Flutter Engine, посредством
-которого узнает о моментах простоя приложения и отсутствия пользовательского взаимодействия. В эти моменты Dart
-Framework запускает процесс оптимизации памяти, что позволяет сократить влияния на пользовательский опыт и стабильность
+**Garbage Collector** - это алгоритм, наблюдает за ссылками и очищает память с целью предотвращения её переполнения.
+
+(!) В процессе сборки мусора слой `Dart Framework` создает канал взаимодействия со слоем `Flutter Engine`, посредством
+которого узнает о моментах простоя приложения и отсутствия пользовательского взаимодействия. В эти моменты `Dart
+Framework` запускает процесс оптимизации памяти, что позволяет сократить влияния на пользовательский опыт и стабильность
 приложения.
 
-Сборщик молодого мусора
+**Сборщик молодого мусора**
 ![Garbage Collector](images/master_young_trash.png)
 
 Используемый объём памяти можно разделить на два пространства: активное и неактивное. Новые объекты располагаются в
 активной части, где по мере её заполнения, живые объекты переносятся из активной области памяти в неактивную, игнорируя
 мёртвые объекты. Затем неактивная половина становится активной. Этот процесс имеет цикличный характер.
 
-Сборщик старого мусора (Parallel Marking and Concurrent Sweeping)
+**Сборщик старого мусора (Parallel Marking and Concurrent Sweeping)**
 ![Garbage Collector](images/master_old_trash.png)
 
-Осуществляется обход дерева объектов, используемые объекты помечаются специальной меткой.
-Во время второго этапа происходит повторный проход по дереву объектов, в ходе которого непомеченные в первом этапе
-объекты перерабатываются
-Все метки стираются
+1. Осуществляется обход дерева объектов, используемые объекты помечаются специальной меткой.
+2. Во время второго этапа происходит повторный проход по дереву объектов, в ходе которого непомеченные в первом этапе
+   объекты перерабатываются.
+3. Все метки стираются, и память освобождается.
 
 ## Тестирование
 
