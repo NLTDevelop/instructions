@@ -2,7 +2,7 @@
 
 Create key pair
 ```bash
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f ~/my_key
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f ~/.ssh/my_key
 ```
 
 Open public key

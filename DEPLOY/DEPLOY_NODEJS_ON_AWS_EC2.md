@@ -14,11 +14,11 @@ git version
 ```
 4) Create app for our project
 ```
-mkdir apps
+mkdir applications
 ```
 5) Go to folder apps
 ```
-cd apps
+cd applications
 ```
 
 ## Clone project from Github ##
@@ -49,6 +49,11 @@ git clone <link SSh>
 ```
 
 ## Update nodejs ##
+
+1) Update your default packages.
+```
+sudo yum install nodejs
+```
 
 1) Clear npm cache
 ```
