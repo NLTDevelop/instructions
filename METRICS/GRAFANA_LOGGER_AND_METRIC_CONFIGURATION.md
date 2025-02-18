@@ -41,15 +41,24 @@ sudo systemctl status docker
 sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
 
-##### 5. Check version, update roots and run docker.
+##### 5. Check version, create data file and update roots and run docker.
 ##### - check version and if docker-compose is available
+##### - update roots docker compose
+```
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
 ```
 sudo docker-compose --version
 ```
 
-##### - update roots
+##### - create data files and update roots
 ```
-sudo chmod +x /usr/local/bin/docker-compose
+sudo mkdir -p ~/grafana/data 
+sudo chown -R 1000:1000 ~/grafana
+
+sudo mkdir -p ~/loki-data
+sudo chown -R 1000:1000 ~/loki-data
 ```
 
 ##### - run docker
@@ -170,7 +179,6 @@ npm i nestjs-loki-logger
 @Global()
 @Module({
   imports: [
-    SequelizeModule.forFeature([Log]), 
     LokiLoggerModule.forRoot({
       lokiUrl: 'http://127.0.0.1:3131', // :3131 your port of loki instanse
       labels: {
@@ -181,7 +189,6 @@ npm i nestjs-loki-logger
       gzip: false,
     }),
   ],
-  controllers: [LoggerController],
   providers: [LoggerService],
   exports: [LoggerService],
 })
