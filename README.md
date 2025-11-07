@@ -13,6 +13,7 @@
 1. [Mobile app versioning](https://github.com/NLTDevelop/instructions/blob/main/MOBILE_APP_VERSIONING.md)
 2. [Google Play Store](./GOOGLE_PLAY.md)
 3. [App Store Connect](./APP_STORE.md)
+4. [Lit best practice](./MOBILE//BEST_PRACTICE//LIST.md)
 
 ### API's
 
